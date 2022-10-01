@@ -17,5 +17,22 @@
 
             return $query-> fetchAll();
         }
+        
+        public function getCategoryNews($id){
+            $query= $this-> db-> prepare("
+                SELECT
+                    news_id, title, summary, post_date, image
+                FROM
+                    news
+                WHERE
+                    category_id= ?
+                ORDER BY
+                    post_date DESC
+            ");
+
+            $query-> execute([$id]);
+
+            return $query-> fetchAll();
+        }
     }
 ?>
