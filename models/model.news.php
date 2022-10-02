@@ -49,5 +49,30 @@
 
             return $query-> fetch();
         }
+
+        public function getSearchNews($data){
+            $query= $this-> db-> prepare("
+                SELECT 
+                    news_id, title, summary, post_date, image
+                FROM 
+                    news 
+                WHERE 
+                    title LIKE ? OR 
+                    summary LIKE ? OR 
+                    message LIKE ? OR
+                    post_date LIKE ?
+                ORDER BY
+                    post_date DESC
+            ");
+
+            $query-> execute([
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%'
+            ]);
+
+            return $query-> fetchAll();
+        }
     }
 ?>
