@@ -34,5 +34,20 @@
 
             return $query-> fetchAll();
         }
+
+        public function getSoloNews($id){
+            $query= $this-> db-> prepare("
+                SELECT
+                    news_id, title, summary, message, post_date, image
+                FROM
+                    news
+                WHERE
+                    news_id= ?
+            ");
+
+            $query->execute([$id]);
+
+            return $query-> fetch();
+        }
     }
 ?>
