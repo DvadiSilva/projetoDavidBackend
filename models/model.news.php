@@ -51,6 +51,8 @@
         }
 
         public function getSearchNews($data){
+            $data= htmlspecialchars(strip_tags($data));
+
             $query= $this-> db-> prepare("
                 SELECT 
                     news_id, title, summary, post_date, image
