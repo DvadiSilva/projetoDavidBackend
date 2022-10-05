@@ -76,5 +76,42 @@
 
             return $query-> fetchAll();
         }
+
+        public function getTenNews(){
+            $query= $this-> db-> prepare("
+                SELECT
+                    news_id, title, summary, post_date, image
+                FROM
+                    news
+                ORDER BY
+                    post_date DESC
+                LIMIT
+                    10
+            ");
+
+            $query-> execute();
+
+            return $query-> fetchAll();
+        }
+
+        public function getNextNews($id){
+            $page= $id*10;
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    news_id, title, summary, post_date, image
+                FROM
+                    news
+                ORDER BY
+                    post_date DESC
+                LIMIT
+                    $page, 10
+            ");
+
+
+            $query-> execute([]);
+
+            return $query-> fetchAll();
+        }
     }
 ?>
