@@ -20,6 +20,7 @@
 
     $controller= $url_parts[1] ?: "home";
     $id= $url_parts[2] ?? "";
+    $page= $url_parts[3] ?? "";
     
     if(!in_array($controller, $controlers)){
         http_response_code(404);

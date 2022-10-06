@@ -18,7 +18,7 @@
                                 <li class="nav-item">
                                     <a
                                         class="nav-link" 
-                                        href="/categories/'.$category["category_id"].'">
+                                        href="/categories/'.$category["category_id"].'/0">
                                         '.$category["name"].'
                                     </a>
                                 </li>

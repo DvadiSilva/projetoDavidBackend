@@ -24,6 +24,45 @@
             </div>
         ';
     }
-
-    require("layout/footer.php");
 ?>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item">
+                    <a 
+                        class="page-link" 
+                        href="/categories/<?= $id."/";echo empty($page)? "0":$page-1?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a 
+                        class="page-link" 
+                        href="/categories/<?= $id."/";echo empty($page)? "0":$page-1?>">
+                        <?= empty($page)? "-":$page-1?>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a 
+                        class="page-link" 
+                        href="/categories/<?= $id."/";echo empty($page)? "0":$page?>">
+                            <?= empty($page)? "0":$page?>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a 
+                        class="page-link"
+                        href="/categories/<?= $id."/";echo empty($page)? "1":$page+1?>">
+                            <?= empty($page)? "1":$page+1?>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a 
+                        class="page-link" 
+                        href="/categories/<?= $id."/";echo empty($page)?"1":$page+1?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </body>
+</html>

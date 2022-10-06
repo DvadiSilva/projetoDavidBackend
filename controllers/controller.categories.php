@@ -39,12 +39,30 @@
     }
 
     $modelNews= new News();
-    $news= $modelNews-> getCategoryNews($id);
+    $allCategoryNews= $modelNews-> getAllCategoryNews($id);
+
+    $maxPage= round(count($allCategoryNews)/10, 0, PHP_ROUND_HALF_UP) +1;
+
+    if(empty($page)){
+        $news= $modelNews-> getTenCategoryNews($id);
+    }
+    else if(!empty($page) && is_numeric($page) && $page> 0 && $page <=$maxPage){
+        $news= $modelNews-> getNextCategoryNews($id, $page);
+    }
+    else{
+        http_response_code(400);
+        
+        $message= "Invalid URL";
+        $title= "Error";
+
+        require("views/view.error.php");
+        exit;
+    }
 
     if(empty($news)){
-        http_response_code(500);
+        http_response_code(404);
     
-        $message= "Internal Server Error";
+        $message= "Not Found";
         $title= "Error";
     
         require("views/view.error.php");
