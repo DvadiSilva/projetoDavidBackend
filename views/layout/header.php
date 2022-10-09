@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= $title ?> - Jornalinho</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/css/base.css">
     </head>
     <body>
@@ -35,5 +36,16 @@
                     </button>
                 </form>
             </div>
+            <?php
+                if(!isset($_SESSION["user"])){
+                    echo '<a href="/login">Login</a>';
+                }
+                else{
+                    echo '
+                        <h4>'.$_SESSION["user"]["username"].'</h4>
+                        <a href="/logout">Logout</a>
+                    ';
+                }
+            ?>
         </nav>
         

@@ -131,7 +131,7 @@
 
         //News Search
         public function getSearchNews($data){
-            $data= htmlspecialchars(strip_tags($data));
+            $data= htmlspecialchars(strip_tags(trim($data)));
 
             $query= $this-> db-> prepare("
                 SELECT 

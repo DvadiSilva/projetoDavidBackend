@@ -1,1 +1,11 @@
 .newsImg{max-width:300px; min-width: 250px;}
+
+/*Eror*/
+#errorContainer{--bs-alert-color: #842029;--bs-alert-bg: #f8d7da;--bs-alert-border-color: #f5c2c7;}
+#errorSvg{width: 20%}
+#errorMessage{font-size: larger;text-align: center;width: 100%;}
+
+/*Register*/
+@media (min-width:992px){
+    .registerContainer{max-width: 950px;}
+}

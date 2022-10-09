@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
     define("ENV", parse_ini_file(".env"));
 
@@ -15,7 +16,7 @@
     $url_parts= explode("/", $_SERVER["REQUEST_URI"]);
 
     $controlers=[
-        "home", "categories", "news", "search"
+        "home", "categories", "news", "search", "login", "register", "logout"
     ];
 
     $controller= $url_parts[1] ?: "home";
