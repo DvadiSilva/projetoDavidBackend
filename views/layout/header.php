@@ -42,8 +42,10 @@
                 }
                 else{
                     echo '
-                        <h4>'.$_SESSION["user"]["username"].'</h4>
-                        <a href="/logout">Logout</a>
+                        <div class="d-flex justify-content-center align-items-center mx-3">
+                            <a href="/profile">'.$_SESSION["user"]["username"].'</a>/
+                            <a href="/logout">Logout</a>
+                        </div>
                     ';
                 }
             ?>

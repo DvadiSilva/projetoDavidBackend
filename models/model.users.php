@@ -81,11 +81,50 @@
 
             $user= $query-> fetch();
 
-            if(!empty($user) &&password_verify($data["password"], $user["password"])){
+            if(!empty($user) && password_verify($data["password"], $user["password"])){
                     
                 return $user;
             }
 
             return [];
+        }
+
+        public function updateProfile($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                UPDATE 
+                    users
+                SET
+                    name= ?, username= ?, email= ?, phone= ?, biografy= ?
+                WHERE
+                    user_id= ?
+            ");
+
+            $query-> execute([
+                $data["name"],
+                $data["username"],
+                $data["email"],
+                $data["phone"],
+                $data["biografy"],
+                $data["user_id"],
+            ]);
+
+            $query= $this-> db-> prepare("
+                SELECT 
+                    user_id, name, username, email, password, phone, photo, biografy, isSubscriber, isWriter, isAdmin
+                FROM 
+                    users
+                WHERE 
+                    user_id= ?
+            ");
+
+            $query-> execute([
+                $data["user_id"]
+            ]);
+
+            $user= $query-> fetch();
+
+            return $user;
         }
     }

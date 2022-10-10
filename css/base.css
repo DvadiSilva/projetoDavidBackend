@@ -7,5 +7,10 @@
 
 /*Register*/
 @media (min-width:992px){
-    .registerContainer{max-width: 950px;}
+    .registerContainer{max-width: 950px; max-height: 660px;}
 }
+
+/*Profile*/
+.profileCard{min-width: 1000px}
+.profileInput{width: 100%}
+.profileDl{font-size: large;}
