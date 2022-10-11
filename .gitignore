@@ -1,5 +1,5 @@
 *images/*
 *.env*
-*php.mailer.php*
+*welcomeEmail.php*
+*newsletterEmail.php*
 *vendor/*
-*.gitignore*

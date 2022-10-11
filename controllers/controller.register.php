@@ -43,6 +43,13 @@
                 
                 if(!empty($user)){
                     $_SESSION["user"]= $user;
+                    
+                    require("welcomeEmail.php");
+                    
+                    if($_SESSION["user"]["isSubscriber"]== 1){
+                        require("newsletterEmail.php");
+                    }
+
                     header("Location: /");
                 }
                 else{
