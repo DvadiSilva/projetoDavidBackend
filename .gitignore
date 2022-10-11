@@ -1,2 +1,5 @@
-*/images*
+*images/*
 *.env*
+*php.mailer.php*
+*vendor/*
+*.gitignore*
