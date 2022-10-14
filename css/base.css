@@ -1,3 +1,5 @@
+.hide{display: none;}
+
 .newsImg{max-width:300px; min-width: 250px;}
 
 /*Eror*/
@@ -34,3 +36,5 @@
 
   .adminCreateButton{ transform: rotate(45deg);}
   .adminContainer{max-width: 95vw;}
+
+  #categoriesSubmitButton{ margin:0 1vw;}

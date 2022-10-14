@@ -127,6 +127,32 @@
         $modelCategories= new Categories();
         $categories= $modelCategories-> getAllCategories();
 
+        if(isset($_POST["send"])){
+
+            if(
+                !empty($_POST["category_name"]) && 
+                mb_strlen($_POST["category_name"]) >= 3 &&
+                mb_strlen($_POST["category_name"]) <= 60
+            ){
+                $category_id= $modelCategories-> create($_POST);
+                
+                if(empty($category_id)){
+                    http_response_code(500);
+
+                    $message= "Internal Server Error";
+                    $title= "Error";
+
+                    require("views/view.error.php");
+                    exit;
+                }
+
+                header("Location: /admin/categories");
+            }
+            else{
+                $message= "O nome deve conter entre 3 e 60 carateres";
+            }
+        }
+
         require("views/admin/view.categories.php");
         exit;
     }

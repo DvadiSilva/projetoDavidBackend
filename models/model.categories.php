@@ -30,5 +30,22 @@
 
             return $query->fetch();
         }
+
+        public function create($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                INSERT INTO categories
+                (name)
+                VALUES(?)
+            ");
+
+
+            $query-> execute([
+                $data["category_name"]
+            ]);
+
+            return $this-> db-> lastInsertId();
+        }
     }
 ?>
