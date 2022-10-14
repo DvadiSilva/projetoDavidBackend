@@ -14,3 +14,23 @@
 .profileCard{min-width: 1000px}
 .profileInput{width: 100%}
 .profileDl{font-size: large;}
+
+/*Admin*/
+.adminTable {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .adminTable td, .adminTable th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .adminTable tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .adminCreateButton{ transform: rotate(45deg);}
+  .adminContainer{max-width: 95vw;}

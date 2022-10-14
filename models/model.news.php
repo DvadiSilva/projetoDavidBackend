@@ -6,7 +6,7 @@
         public function getAllNews(){
             $query= $this-> db-> prepare("
                 SELECT
-                    news_id, title, summary, post_date, image
+                    news_id, title, summary, post_date, image, category_id
                 FROM
                     news
                 ORDER BY
@@ -22,7 +22,7 @@
         public function getTenNews(){
             $query= $this-> db-> prepare("
                 SELECT
-                    news_id, title, summary, post_date, image
+                    news_id, title, summary, post_date, image, category_id
                 FROM
                     news
                 ORDER BY
@@ -156,5 +156,49 @@
 
             return $query-> fetchAll();
         }
+        
+        //News Admin
+        public function getNextAdminNews($page){
+            $currentPage= $page*10;
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    news_id, title, post_date, category_id
+                FROM
+                    news
+                ORDER BY
+                    post_date DESC
+                LIMIT
+                    $currentPage, 10
+            ");
+
+
+            $query-> execute([]);
+
+            return $query-> fetchAll();
+        }
+
+        //CRUD News
+        public function create($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                INSERT INTO news
+                (title, summary, message, image, category_id)
+                VALUES(?, ?, ?, ?, ?)
+            ");
+
+
+            $query-> execute([
+                $data["title"],
+                $data["summary"],
+                $data["message"],
+                $data["image"],
+                $data["category"],
+            ]);
+
+            return $this-> db-> lastInsertId();
+        }
+
     }
 ?>

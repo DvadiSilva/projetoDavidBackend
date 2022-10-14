@@ -20,7 +20,13 @@
 
     $title= "Perfil";
 
-    if(isset($url_parts[2]) && $url_parts[2]==="edit"){
+    if(empty($url_parts[2])){
+        
+        require("views/view.profile.php");
+        exit;
+    }
+    else if(isset($url_parts[2]) && $url_parts[2]==="edit"){
+
         if(
             isset($_POST["send"])
         ){
@@ -85,6 +91,13 @@
         require("views/view.profile_edit.php");
         exit;
     }
-    
-    require("views/view.profile.php");
+    else{
+        http_response_code(404);
+
+        $message= "Invalid URL";
+        $title= "Error";
+
+        require("views/view.error.php");
+        exit;
+    }
 ?>

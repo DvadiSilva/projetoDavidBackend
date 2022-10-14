@@ -13,20 +13,25 @@
             <div class="container-fluid d-flex justify-content-between">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <?php
-                        foreach($categories as $category){
-                            echo '
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link" 
-                                        href="/categories/'.$category["category_id"].'/0">
-                                        '.$category["name"].'
-                                    </a>
-                                </li>
-                            ';
-                        }
-                    ?>
+<?php
+    foreach($categories as $category){
+        echo '
+            <li class="nav-item">
+                <a
+                    class="nav-link" 
+                    href="/categories/'.$category["category_id"].'/0">
+                    '.$category["name"].'
+                </a>
+            </li>
+        ';
+    }
+?>
                 </ul>
+<?php
+    if(isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"]== 1){
+        echo '<a class="nav-link" href="/admin">Painel de Controlo</a>';
+    }
+?>
                 <form class="d-flex align-items-center" action="/search" method="post">
                     <input type="text" name="search" aria-label="search" placeholder="Pesquisar" minlength="1" maxlength="30">
                     <button type="submit" class="btn btn-primary" name="send">
@@ -36,18 +41,18 @@
                     </button>
                 </form>
             </div>
-            <?php
-                if(!isset($_SESSION["user"])){
-                    echo '<a href="/login">Login</a>';
-                }
-                else{
-                    echo '
-                        <div class="d-flex justify-content-center align-items-center mx-3">
-                            <a href="/profile">'.$_SESSION["user"]["username"].'</a>/
-                            <a href="/logout">Logout</a>
-                        </div>
-                    ';
-                }
-            ?>
+<?php
+    if(!isset($_SESSION["user"])){
+        echo '<a href="/login">Login</a>';
+    }
+    else{
+        echo '
+            <div class="d-flex justify-content-center align-items-center mx-3">
+                <a href="/profile">'.$_SESSION["user"]["username"].'</a>/
+                <a href="/logout">Logout</a>
+            </div>
+        ';
+    }
+?>
         </nav>
         

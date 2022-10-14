@@ -14,5 +14,10 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 </ul>
+<?php
+    if(isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"]== 1){
+        echo '<a class="nav-link" href="/admin">Painel de Controlo</a>';
+    }
+?>
             </div>
         </nav>

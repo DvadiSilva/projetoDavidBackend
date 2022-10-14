@@ -5,7 +5,7 @@
         public function getAllUsers(){
             $query= $this-> db-> prepare("
                 SELECT
-                    user_id, name, username, email, phone
+                    user_id, name, username, email, phone, isSubscriber, isWriter, isAdmin
                 FROM
                     users
             ");
