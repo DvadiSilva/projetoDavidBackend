@@ -96,7 +96,7 @@
                 UPDATE 
                     users
                 SET
-                    name= ?, username= ?, email= ?, phone= ?, biografy= ?
+                    name= ?, username= ?, email= ?, phone= ?, biografy= ?, photo= ?
                 WHERE
                     user_id= ?
             ");
@@ -107,6 +107,7 @@
                 $data["email"],
                 $data["phone"],
                 $data["biografy"],
+                $data["photo"],
                 $data["user_id"],
             ]);
 

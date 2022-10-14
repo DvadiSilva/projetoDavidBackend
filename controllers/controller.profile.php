@@ -43,6 +43,29 @@
                 $_POST["phone"]= $_SESSION["user"]["phone"];
             }
 
+            if(
+                isset($_FILES["photo"]) &&
+                $_FILES["photo"]["error"]=== 0 &&
+                ($_FILES["photo"]["type"]=== "image/png" || 
+                $_FILES["photo"]["type"]=== "image/jpeg") &&
+                $_FILES["photo"]["size"] > 0 &&
+                $_FILES["photo"]["size"] < 2 * 1024 * 1024
+            ){
+                if($_FILES["photo"]["type"]=== "image/png"){
+                    $photoname= date("YmdHis")."_".mt_rand(10000000, 99999999).".png";
+                }
+                else{
+                    $photoname= date("YmdHis")."_".mt_rand(10000000, 99999999).".jpeg";
+                }
+
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "images/profile_photos/".$photoname);
+
+                $_POST["photo"]= "/images/profile_photos/".$photoname;
+            }
+            else{
+                $_POST["photo"]= $_SESSION["user"]["photo"];
+            }
+
             $_POST["username"]= strtolower(str_replace(' ', '', $_POST["username"]));
 
             if(

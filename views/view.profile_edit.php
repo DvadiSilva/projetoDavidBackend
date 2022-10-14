@@ -5,9 +5,12 @@
 ?>
 
   <div class="card flex-row border-dark m-3 profileCard">
-        <img src="<?= $_SESSION["user"]["photo"] ?>" class="card-img-top p-3 newsImg" alt="...">
+      <form action="/profile/edit" method="post" enctype="multipart/form-data" class="d-flex justify-content-center" >
+        <div>
+            <img src="<?= $_SESSION["user"]["photo"] ?>" class="card-img-top p-3 newsImg" alt="...">
+            <input type="file" name="photo" accept="image/png, image/jpeg">
+        </div>
         <div class="card-body">
-            <form action="/profile/edit" method="post">
                 <h2 class="card-title">
                     <input type="text" name="name" class="profileInput" minlength=2 maxlength=60 value="<?= $_SESSION["user"]["name"] ?>">
                 </h2>
