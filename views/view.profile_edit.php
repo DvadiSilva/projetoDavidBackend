@@ -5,8 +5,8 @@
 ?>
 
   <div class="card flex-row border-dark m-3 profileCard">
-      <form action="/profile/edit" method="post" enctype="multipart/form-data" class="d-flex justify-content-center" >
-        <div>
+      <form action="/profile/edit" method="post" enctype="multipart/form-data" class="d-flex justify-content-center w-100">
+        <div class="d-flex flex-column">
             <img src="<?= $_SESSION["user"]["photo"] ?>" class="card-img-top p-3 newsImg" alt="...">
             <input type="file" name="photo" accept="image/png, image/jpeg">
         </div>
