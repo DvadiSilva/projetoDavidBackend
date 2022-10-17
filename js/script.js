@@ -11,31 +11,31 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
     //modal
-    const showModals=document.querySelectorAll(".deleteCategoryShowModal");
-    const modalWrappers=document.querySelectorAll(".deleteCategoryModalWrapper");
-    const closeModals=document.querySelectorAll(".deleteCategoryCloseModal");
-    const closeModals2=document.querySelectorAll(".deleteCategoryCloseModal2");
+    const deleteCategoryShowModals=document.querySelectorAll(".deleteCategoryShowModal");
+    const deleteCategoryModalWrappers=document.querySelectorAll(".deleteCategoryModalWrapper");
+    const deleteCategoryCloseModals=document.querySelectorAll(".deleteCategoryCloseModal");
+    const deleteCategoryCloseModals2=document.querySelectorAll(".deleteCategoryCloseModal2");
     const deleteCategoryButtons=document.querySelectorAll(".deleteCategoryButton");
 
-    for(let i = 0; i < showModals.length; i++){
+    for(let i = 0; i < deleteCategoryShowModals.length; i++){
 
-        showModals[i].addEventListener("click", ()=>{
+        deleteCategoryShowModals[i].addEventListener("click", ()=>{
             
-            modalWrappers[i].classList.remove("d-none");
+            deleteCategoryModalWrappers[i].classList.remove("d-none");
         });
     }
 
-    for(let i = 0; i < closeModals.length; i++){
+    for(let i = 0; i < deleteCategoryCloseModals.length; i++){
 
-        closeModals[i].addEventListener("click", ()=>{
-            modalWrappers[i].classList.add("d-none");
+        deleteCategoryCloseModals[i].addEventListener("click", ()=>{
+            deleteCategoryModalWrappers[i].classList.add("d-none");
         });
     }
 
-    for(let i = 0; i < closeModals2.length; i++){
+    for(let i = 0; i < deleteCategoryCloseModals2.length; i++){
 
-        closeModals2[i].addEventListener("click", ()=>{
-            modalWrappers[i].classList.add("d-none");
+        deleteCategoryCloseModals2[i].addEventListener("click", ()=>{
+            deleteCategoryModalWrappers[i].classList.add("d-none");
         });
     }
     
