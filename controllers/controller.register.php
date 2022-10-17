@@ -2,10 +2,14 @@
     require("models/model.users.php");
 
     $modelUsers= new Users();
-    $usernamesArray= $modelUsers-> getUsernames();
+    $users= $modelUsers-> getAllUsers();
 
-    foreach($usernamesArray as $username){
-        $usernames[]= $username["username"];
+    $usernames= [];
+    $emails= [];
+
+    foreach($users as $user){
+        $usernames[]= $user["username"];
+        $emails[]= $user["email"];
     }
 
     $title= "Registo";
@@ -38,28 +42,34 @@
             mb_strlen($_POST["passwordRepeated"])<= 1000
         ){
             if(!in_array($_POST["username"], $usernames)){
-
-                $user= $modelUsers-> create($_POST);
                 
-                if(!empty($user)){
-                    $_SESSION["user"]= $user;
-                    
-                    require("welcomeEmail.php");
-                    
-                    if($_SESSION["user"]["isSubscriber"]== 1){
-                        require("newsletterEmail.php");
-                    }
+                if(!in_array($_POST["email"], $emails)){
 
-                    header("Location: /");
+                    $user= $modelUsers-> create($_POST);
+                    
+                    if(!empty($user)){
+                        $_SESSION["user"]= $user;
+                        
+                        require("welcomeEmail.php");
+                        
+                        if($_SESSION["user"]["isSubscriber"]== 1){
+                            require("newsletterEmail.php");
+                        }
+
+                        header("Location: /");
+                    }
+                    else{
+                        http_response_code(500);
+            
+                        $message= "Internal Server Error";
+                        $title= "Error";
+
+                        require("views/view.error.php");
+                        exit;
+                    }
                 }
                 else{
-                    http_response_code(500);
-        
-                    $message= "Internal Server Error";
-                    $title= "Error";
-
-                    require("views/view.error.php");
-                    exit;
+                    $message= "Email Indisponível";
                 }
             }
             else{

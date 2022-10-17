@@ -15,19 +15,6 @@
             return $query-> fetchAll();
         }
 
-        public function getUsernames(){
-            $query= $this-> db-> prepare("
-                SELECT
-                    username
-                FROM
-                    users
-            ");
-
-            $query-> execute();
-
-            return $query-> fetchAll();
-        }
-
         public function create($data){
             $data= $this-> sanitizer($data);
 
