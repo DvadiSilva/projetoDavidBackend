@@ -38,7 +38,7 @@
   #categoriesSubmitButton{ margin:0 1vw;}
 
 
-  .deleteCategoryModalWrapper{
+  .deleteCategoryModalWrapper, .editCategoryModalWrapper{
       width:100vw;
       height:100vh;
       background:#333;
@@ -51,7 +51,7 @@
       justify-content: center;
   }
 
-  #modal{
+  .deleteCategoryModal, .editCategoryModal{
       min-width: 60vh;
       min-height:30vh;
       background:#FFF;
@@ -63,7 +63,7 @@
       position:relative;
   }
 
-  #deleteCategoryCloseModal{
+  #deleteCategoryCloseModal, #editCategoryCloseModal{
       position:absolute;
       right:0;
       top:0;

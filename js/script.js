@@ -3,14 +3,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const createCategoryButton= document.querySelector("#createCategoryButton");
     const categoriesCreateForm= document.querySelector("#categoriesCreateForm");
 
-    createCategoryButton.addEventListener("click", ()=>{
-        categoriesCreateForm.classList.remove("d-none");
-        categoriesCreateForm.classList.add("d-flex");
-        categoriesCreateForm.classList.add("align-items-center");
-    });
+    if(createCategoryButton){
+        createCategoryButton.addEventListener("click", ()=>{
+            categoriesCreateForm.classList.remove("d-none");
+            categoriesCreateForm.classList.add("d-flex");
+            categoriesCreateForm.classList.add("align-items-center");
+        });
+    }
 
 
-    //modal
+    //modal delete category
     const deleteCategoryShowModals=document.querySelectorAll(".deleteCategoryShowModal");
     const deleteCategoryModalWrappers=document.querySelectorAll(".deleteCategoryModalWrapper");
     const deleteCategoryCloseModals=document.querySelectorAll(".deleteCategoryCloseModal");
@@ -41,7 +43,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     
     //butao "Sim" de remover
     for(let deleteCategoryButton of deleteCategoryButtons){
-        const removeCategoryData= "category_id="+deleteCategoryButton.dataset.categoryId;
+        const removeCategoryData= "removeCategory_id="+deleteCategoryButton.dataset.categoryId;
         const tr= deleteCategoryButton.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
         
         deleteCategoryButton.addEventListener("click", ()=>{
@@ -62,4 +64,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
         });
     }
     
+    //modal edit category
+    const editCategoryShowModals=document.querySelectorAll(".editCategoryShowModal");
+    const editCategoryModalWrappers=document.querySelectorAll(".editCategoryModalWrapper");
+    const editCategoryCloseModals=document.querySelectorAll(".editCategoryCloseModal");
+
+    for(let i = 0; i < editCategoryShowModals.length; i++){
+
+        editCategoryShowModals[i].addEventListener("click", ()=>{
+            
+            editCategoryModalWrappers[i].classList.remove("d-none");
+        });
+    }
+
+    for(let i = 0; i < editCategoryCloseModals.length; i++){
+
+        editCategoryCloseModals[i].addEventListener("click", ()=>{
+            editCategoryModalWrappers[i].classList.add("d-none");
+        });
+    }
+
 });

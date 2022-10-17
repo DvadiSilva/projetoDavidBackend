@@ -59,10 +59,45 @@
             ");
 
             $query-> execute([
-                $data["category_id"]
+                $data["removeCategory_id"]
             ]);
 
             return $query-> rowCount();
+        }
+
+        public function update($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                UPDATE 
+                    categories
+                SET
+                    name= ?
+                WHERE
+                    category_id= ?
+            ");
+
+            $query-> execute([
+                $data["category_name"],
+                $data["editCategory_id"],
+            ]);
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    category_id, name
+                FROM
+                    categories
+                WHERE
+                    category_id= ?
+            ");
+
+            $query-> execute([
+                $data["editCategory_id"]
+            ]);
+
+            $category= $query-> fetch();
+
+            return $category;
         }
     }
 ?>

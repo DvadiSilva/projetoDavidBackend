@@ -153,7 +153,33 @@
             }
         }
 
-        if(isset($_POST["category_id"])){
+        if(isset($_POST["editCategory_id"])){
+            if(
+                !empty($_POST["category_name"]) && 
+                mb_strlen($_POST["category_name"]) >= 3 &&
+                mb_strlen($_POST["category_name"]) <= 60
+            ){
+                $category= $modelCategories-> update($_POST);
+
+                if(empty($category)){
+                    http_response_code(500);
+
+                    $message= "Internal Server Error";
+                    $title= "Error";
+
+                    require("views/view.error.php");
+                    exit;
+                }
+
+                header("Location: /admin/categories");
+            }
+            else{
+                $message= "O nome deve conter entre 3 e 60 carateres";
+            }
+        }
+
+
+        if(isset($_POST["removeCategory_id"])){
             $affectedCategory= $modelCategories-> delete($_POST);
 
             if(isset($affectedCategory)){
