@@ -153,6 +153,26 @@
             }
         }
 
+        if(isset($_POST["category_id"])){
+            $affectedCategory= $modelCategories-> delete($_POST);
+
+            if(isset($affectedCategory)){
+                http_response_code(200);
+
+                $message= "Categoria removida com sucesso";
+            }
+            else{
+                http_response_code(500);
+
+                $message= "Internal Server Error";
+                $title= "Error";
+
+                require("views/view.error.php");
+                exit;
+            }
+
+        }
+
         require("views/admin/view.categories.php");
         exit;
     }

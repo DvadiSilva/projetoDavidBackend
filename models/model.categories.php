@@ -47,5 +47,22 @@
 
             return $this-> db-> lastInsertId();
         }
+
+        public function delete($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                DELETE FROM
+                    categories
+                WHERE 
+                    category_id= ?
+            ");
+
+            $query-> execute([
+                $data["category_id"]
+            ]);
+
+            return $query-> rowCount();
+        }
     }
 ?>

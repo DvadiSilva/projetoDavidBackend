@@ -1,5 +1,3 @@
-.hide{display: none;}
-
 .newsImg{max-width:300px; min-width: 250px;}
 
 /*Eror*/
@@ -38,3 +36,35 @@
   .adminContainer{max-width: 95vw;}
 
   #categoriesSubmitButton{ margin:0 1vw;}
+
+
+  .deleteCategoryModalWrapper{
+      width:100vw;
+      height:100vh;
+      background:#333;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  #modal{
+      min-width: 60vh;
+      min-height:30vh;
+      background:#FFF;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+      flex-direction:column;
+      position:relative;
+  }
+
+  #deleteCategoryCloseModal{
+      position:absolute;
+      right:0;
+      top:0;
+  }
