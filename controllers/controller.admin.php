@@ -208,6 +208,26 @@
         $modelUsers= new Users();
         $users= $modelUsers-> getAllUsers();
 
+        if(isset($_POST["removeUser_id"])){
+            $affectedUser= $modelUsers-> delete($_POST);
+
+            if(isset($affectedUser)){
+                http_response_code(200);
+
+                $message= "Utilizador removido com sucesso";
+            }
+            else{
+                http_response_code(500);
+
+                $message= "Internal Server Error";
+                $title= "Error";
+
+                require("views/view.error.php");
+                exit;
+            }
+
+        }
+
         require("views/admin/view.users.php");
         exit;
     }

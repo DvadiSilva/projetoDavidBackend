@@ -5,7 +5,7 @@
 
     <div class="col-9">
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Noticias</h2>
+            <h2>Categorias</h2>
             <form action="/admin/categories" method="post" class="d-none" id="categoriesCreateForm">
                 <label class="d-flex flex-row align-items-center">
                     Nome da Categoria
@@ -19,7 +19,7 @@
         <table class="adminTable">
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
+                <th id="categoryTh">Nome</th>
             </tr>
 <?php
     foreach($categories as $category){

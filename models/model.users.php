@@ -115,4 +115,21 @@
 
             return $user;
         }
+
+        public function delete($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                DELETE FROM
+                    users
+                WHERE 
+                    user_id= ?
+            ");
+
+            $query-> execute([
+                $data["removeUser_id"]
+            ]);
+
+            return $query-> rowCount();
+        }
     }

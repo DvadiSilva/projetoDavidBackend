@@ -24,7 +24,7 @@
   
   .adminTable td, .adminTable th {
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: center;
     padding: 8px;
   }
   
@@ -36,9 +36,10 @@
   .adminContainer{max-width: 95vw;}
 
   #categoriesSubmitButton{ margin:0 1vw;}
+  #categoryTh{text-align: left;}
 
-
-  .deleteCategoryModalWrapper, .editCategoryModalWrapper{
+  .deleteCategoryModalWrapper, .editCategoryModalWrapper, 
+  .deleteUserModalWrapper, .editUserModalWrapper{
       width:100vw;
       height:100vh;
       background:#333;
@@ -51,7 +52,7 @@
       justify-content: center;
   }
 
-  .deleteCategoryModal, .editCategoryModal{
+  .deleteCategoryModal, .editCategoryModal, .deleteUserModal, .editUserModal{
       min-width: 60vh;
       min-height:30vh;
       background:#FFF;
@@ -63,7 +64,7 @@
       position:relative;
   }
 
-  #deleteCategoryCloseModal, #editCategoryCloseModal{
+  #deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal{
       position:absolute;
       right:0;
       top:0;
