@@ -12,10 +12,10 @@
                 <th>Nome</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>isSubcriber</th>
-                <th>isWritter</th>
-                <th>isAdmin</th>
+                <th>Telemóvel</th>
+                <th>Subscritor</th>
+                <th>Escritor</th>
+                <th>Administrador</th>
                 <th>--/--</th>
             </tr>
 <?php
@@ -27,9 +27,9 @@
                 <td>'.$user["username"].'</td>
                 <td>'.$user["email"].'</td>
                 <td>'.$user["phone"].'</td>
-                <td>'.$user["isSubscriber"].'</td>
-                <td>'.$user["isWriter"].'</td>
-                <td>'.$user["isAdmin"].'</td>
+                <td>'.($user["isSubscriber"]== 0? "Não":"Sim").'</td>
+                <td>'.($user["isWriter"]== 0? "Não":"Sim").'</td>
+                <td>'.($user["isAdmin"]== 0? "Não":"Sim").'</td>
 
 <td>
     <div class="d-flex align-items-center">
@@ -47,9 +47,46 @@
                     <h5 class="modal-title">Editar utilizador '.$user["name"].'</h5>
                     <button type="button" id="editUserCloseModal" class="btn-close editUserCloseModal"></button>
                 </div>
-                <form action="/admin/categories" method="post">
+                <form action="/admin/users" method="post">
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="exampleFormControlInput1" name="name" aria-label="Utilizador" placeholder="Nome da categoria" minlength=3 maxlength=60 value="'.$user["name"].'" required>
+                        <label for="exampleFormControlInput1" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Nome" minlength=2 maxlength=60 value="'.$user["name"].'">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput2" name="username" placeholder="Username" minlength=1 maxlength=30 value="'.$user["username"].'">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput3" name="email" placeholder="Email" value="'.$user["email"].'">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput4" class="form-label">Telemóvel</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput4" name="phone" placeholder="Telemóvel" minlength=9 maxlength=30 value="'.$user["phone"].'">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1">É subscritor?</label>
+                        <select name="isSubscriber" id="exampleFormControlTextarea1" value="'.$user["isSubscriber"].'">
+                            <option value="'.$user["isSubscriber"].'" selected disabled hidden>'.($user["isSubscriber"]== 0? "Não":"Sim").'</option>
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                        </select> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea2">É escritor?</label>
+                        <select name="isWriter" id="exampleFormControlTextarea2" value="'.$user["isWriter"].'">
+                            <option value="'.$user["isWriter"].'" selected disabled hidden>'.($user["isWriter"]== 0? "Não":"Sim").'</option>
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                        </select> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea3">É administrador?</label>
+                        <select name="isAdmin" id="exampleFormControlTextarea3" value="'.$user["isAdmin"].'">
+                            <option value="'.$user["isAdmin"].'" selected disabled hidden>'.($user["isAdmin"]== 0? "Não":"Sim").'</option>
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                        </select> 
                     </div>
                     <button type="submit" name="editUser_id" class="btn btn-success editUserButton" value="'.$user["user_id"].'">Guardar</button>
                 </form>

@@ -196,7 +196,6 @@
                 require("views/view.error.php");
                 exit;
             }
-
         }
 
         require("views/admin/view.categories.php");
@@ -207,6 +206,85 @@
 
         $modelUsers= new Users();
         $users= $modelUsers-> getAllUsers();
+
+        $usernames= [];
+        $emails= [];
+
+        foreach($users as $user){
+            $usernames[]= $user["username"];
+            $emails[]= $user["email"];
+        }
+
+        if(
+            isset($_POST["editUser_id"])
+        ){
+            $user= $modelUsers-> getUser($_POST);
+            
+            if(!isset($_POST["isSubscriber"])){
+                $_POST["isSubscriber"]= $user["isSubscriber"];
+            }
+            if(!isset($_POST["isWriter"])){
+                $_POST["isWriter"]= $user["isWriter"];
+            }
+            if(!isset($_POST["isAdmin"])){
+                $_POST["isAdmin"]= $user["isAdmin"];
+            }
+
+            if(
+                !empty($_POST["name"]) &&
+                !empty($_POST["username"]) &&
+                !empty($_POST["email"]) &&
+                !empty($_POST["phone"]) &&
+                filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)  &&
+                mb_strlen($_POST["name"])>= 2   &&
+                mb_strlen($_POST["name"])<= 60  &&
+                mb_strlen($_POST["username"])>= 1   &&
+                mb_strlen($_POST["username"])<= 30  &&
+                mb_strlen($_POST["phone"])>= 9  &&
+                mb_strlen($_POST["phone"])<= 30 &&
+                ($_POST["isSubscriber"]== 0 || $_POST["isSubscriber"]== 1) &&
+                ($_POST["isWriter"]== 0 || $_POST["isWriter"]== 1) &&
+                ($_POST["isAdmin"]== 0 || $_POST["isAdmin"]== 1)
+            ){
+
+                if(
+                    !in_array($_POST["username"], $usernames) || 
+                    $_POST["username"]=== $user["username"]
+                ){
+                    if(
+                        !in_array($_POST["email"], $emails) || 
+                        $_POST["email"]=== $user["email"]
+                    ){
+                        $updatedUser= $modelUsers-> update($_POST);
+
+                        if(isset($updatedUser)){
+                            $message= "Utilizador atualizado com sucesso";
+
+                            header("Location: /admin/users");
+                        }
+                        else{
+                            http_response_code(500);
+            
+                            $message= "Internal Server Error";
+                            $title= "Error";
+            
+                            require("views/view.error.php");
+                            exit;
+                        }
+                    }
+                    else{
+                        $message= "Email Indisponível";
+                    }
+                }
+                else{
+                    $message= "Username Indisponível";
+                }
+            }
+            else{
+                $message= "Dados incorretos, confirme o preenchimento dos campos";
+            }
+
+        }
 
         if(isset($_POST["removeUser_id"])){
             $affectedUser= $modelUsers-> delete($_POST);

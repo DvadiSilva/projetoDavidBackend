@@ -15,6 +15,23 @@
             return $query-> fetchAll();
         }
 
+        public function getUser($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    user_id, name, username, email, phone, isSubscriber, isWriter, isAdmin
+                FROM
+                    users
+                WHERE
+                    user_id= ?
+            ");
+
+            $query-> execute([$data["editUser_id"]]);
+
+            return $query-> fetch();
+        }
+
         public function create($data){
             $data= $this-> sanitizer($data);
 
@@ -128,6 +145,32 @@
 
             $query-> execute([
                 $data["removeUser_id"]
+            ]);
+
+            return $query-> rowCount();
+        }
+
+        public function update($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                UPDATE 
+                    users
+                SET
+                    name= ?, username= ?, email= ?, phone= ?, isSubscriber= ?, isWriter= ?, isAdmin= ?
+                WHERE
+                    user_id= ?
+            ");
+
+            $query-> execute([
+                $data["name"],
+                $data["username"],
+                $data["email"],
+                $data["phone"],
+                isset($data["isSubscriber"])? $data["isSubscriber"]: 0,
+                isset($data["isWriter"])? $data["isWriter"]: 0,
+                isset($data["isAdmin"])? $data["isAdmin"]: 0,
+                $data["editUser_id"]
             ]);
 
             return $query-> rowCount();
