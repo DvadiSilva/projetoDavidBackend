@@ -21,7 +21,7 @@
             <tr>
                 <td>'.$newsSolo["news_id"].'</td>
                 <td>'.$newsSolo["title"].'</td>
-                <td>'.$newsSolo["category_id"].'</td>
+                <td>'.$newsSolo["name"].'</td>
                 <td>'.$newsSolo["post_date"].'</td>
             </tr>
         ';

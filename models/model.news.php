@@ -6,9 +6,11 @@
         public function getAllNews(){
             $query= $this-> db-> prepare("
                 SELECT
-                    news_id, title, summary, post_date, image, category_id
+                    news.news_id, news.title, news.summary, news.post_date, news.image, news.category_id, categories.name
                 FROM
                     news
+                INNER JOIN
+                    categories USING(category_id)
                 ORDER BY
                     post_date DESC
             ");
@@ -22,9 +24,11 @@
         public function getTenNews(){
             $query= $this-> db-> prepare("
                 SELECT
-                    news_id, title, summary, post_date, image, category_id
+                    news.news_id, news.title, news.summary, news.post_date, news.image, news.category_id, categories.name
                 FROM
                     news
+                INNER JOIN
+                    categories USING(category_id)
                 ORDER BY
                     post_date DESC
                 LIMIT
@@ -163,9 +167,11 @@
 
             $query= $this-> db-> prepare("
                 SELECT
-                    news_id, title, post_date, category_id
+                    news.news_id, news.title, news.summary, news.post_date, news.image, news.category_id, categories.name
                 FROM
                     news
+                INNER JOIN
+                    categories USING(category_id)   
                 ORDER BY
                     post_date DESC
                 LIMIT
