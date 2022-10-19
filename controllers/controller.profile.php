@@ -12,10 +12,14 @@
     }
 
     $modelUsers= new Users();
-    $usernamesArray= $modelUsers-> getUsernames();
+    $users= $modelUsers-> getAllUsers();
 
-    foreach($usernamesArray as $username){
-        $usernames[]= $username["username"];
+    $usernames= [];
+    $emails= [];
+
+    foreach($users as $user){
+        $usernames[]= $user["username"];
+        $emails[]= $user["email"];
     }
 
     $title= "Perfil";
@@ -79,31 +83,39 @@
                 mb_strlen($_POST["biografy"])<= 140
             ){
                 if(
-                    !in_array($_POST["username"], $usernames) || 
-                    $_POST["username"]=== $_SESSION["user"]["username"]
+                    !in_array($_POST["email"], $emails) || 
+                    $_POST["email"]=== $_SESSION["user"]["email"]
                 ){
+                    if(
+                        !in_array($_POST["username"], $usernames) || 
+                        $_POST["username"]=== $_SESSION["user"]["username"]
+                    ){
 
-                    $_POST["user_id"]= $_SESSION["user"]["user_id"];
+                        $_POST["user_id"]= $_SESSION["user"]["user_id"];
 
-                    $user= $modelUsers-> updateProfile($_POST);
-                    
-                    if(!empty($user)){
-                        $_SESSION["user"]= $user;
+                        $user= $modelUsers-> updateProfile($_POST);
+                        
+                        if(!empty($user)){
+                            $_SESSION["user"]= $user;
 
-                        header("Location: /profile");
+                            header("Location: /profile");
+                        }
+                        else{
+                            http_response_code(500);
+                
+                            $message= "Internal Server Error";
+                            $title= "Error";
+        
+                            require("views/view.error.php");
+                            exit;
+                        }
                     }
                     else{
-                        http_response_code(500);
-            
-                        $message= "Internal Server Error";
-                        $title= "Error";
-    
-                        require("views/view.error.php");
-                        exit;
+                        $message= "Username Indisponível";
                     }
                 }
                 else{
-                    $message= "Username Indisponível";
+                    $message= "Email Indisponível";
                 }
             }
             else{
