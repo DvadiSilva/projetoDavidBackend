@@ -70,8 +70,6 @@
                 $_POST["photo"]= $_SESSION["user"]["photo"];
             }
 
-            $_POST["username"]= strtolower(str_replace(' ', '', $_POST["username"]));
-
             if(
                 filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)  &&
                 mb_strlen($_POST["name"])>= 2   &&
@@ -82,6 +80,8 @@
                 mb_strlen($_POST["phone"])<= 30 &&
                 mb_strlen($_POST["biografy"])<= 140
             ){
+                $_POST["username"]= strtolower(str_replace(' ', '', $_POST["username"]));
+
                 if(
                     !in_array($_POST["email"], $emails) || 
                     $_POST["email"]=== $_SESSION["user"]["email"]

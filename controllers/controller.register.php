@@ -18,9 +18,7 @@
 
     if(
         isset($_POST["send"])
-    ){
-        $_POST["username"]= strtolower(str_replace(' ', '', $_POST["username"]));
-       
+    ){       
         if(
             filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)  &&
             $_POST["password"]=== $_POST["passwordRepeated"]    &&
@@ -41,6 +39,8 @@
             mb_strlen($_POST["passwordRepeated"])>= 8   &&
             mb_strlen($_POST["passwordRepeated"])<= 1000
         ){
+            $_POST["username"]= strtolower(str_replace(' ', '', $_POST["username"]));
+
             if(!in_array($_POST["username"], $usernames)){
                 
                 if(!in_array($_POST["email"], $emails)){
@@ -52,7 +52,7 @@
                         
                         require("welcomeEmail.php");
                         
-                        if($_SESSION["user"]["isSubscriber"]== 1){
+                        if($user["isSubscriber"]== 1){
                             require("newsletterEmail.php");
                         }
 

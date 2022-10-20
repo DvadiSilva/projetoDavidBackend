@@ -3,9 +3,12 @@
     require("view.navBar.php");
 ?>
 
-    <div class="col-9">
-        <h2>Utilizadores</h2>
-        <?= isset($message)? $message: ""?>
+    <div class="col-10">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Utilizadores</h2>
+            <?= isset($message)? $message: ""?>
+            <a href="/admin/users/create" class="btn-close adminCreateButton" aria-label="create"></a>
+        </div>
         <table class="adminTable">
             <tr>
                 <th>ID</th>
