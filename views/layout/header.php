@@ -44,13 +44,13 @@
             </div>
 <?php
     if(!isset($_SESSION["user"])){
-        echo '<a href="/login">Login</a>';
+        echo '<a class="nav-link" href="/login">Login</a>';
     }
     else{
         echo '
-            <div class="d-flex justify-content-center align-items-center mx-3">
-                <a href="/profile">'.$_SESSION["user"]["username"].'</a>/
-                <a href="/logout">Logout</a>
+            <div class="d-flex align-items-center mx-3">
+                <a class="nav-link mx-3" href="/profile">'.$_SESSION["user"]["username"].'</a>
+                <a class="btn btn-dark" href="/logout">Logout</a>
             </div>
         ';
     }

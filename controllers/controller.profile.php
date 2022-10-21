@@ -25,6 +25,60 @@
     $title= "Perfil";
 
     if(empty($url_parts[2])){
+
+        if(isset($_POST["changePassword"])){
+
+            if(
+                !empty($_POST["currentPassword"])   &&
+                !empty($_POST["newPassword"])   &&
+                !empty($_POST["newRepeatedPassword"])   &&
+                mb_strlen($_POST["currentPassword"])>= 8    &&
+                mb_strlen($_POST["currentPassword"])<= 1000 &&
+                mb_strlen($_POST["newPassword"])>= 8    &&
+                mb_strlen($_POST["newPassword"])<= 1000 &&
+                mb_strlen($_POST["newRepeatedPassword"])>= 8    &&
+                mb_strlen($_POST["newRepeatedPassword"])<= 1000 &&
+                $_POST["newPassword"]=== $_POST["newRepeatedPassword"]
+            ){
+                $password= $modelUsers-> getUserPassword($_SESSION["user"]);
+                
+                if(password_verify($_POST["currentPassword"], $password["password"])){
+
+                    if(!password_verify($_POST["newPassword"], $password["password"])){
+                        $_POST["user_id"]= $_SESSION["user"]["user_id"];
+                        
+                        $updatedPassword= $modelUsers-> updatePassword($_POST);
+
+                        if(isset($updatedPassword)){
+                            $message= "Password atualizada com sucesso";
+
+                            require("changePasswordEmail.php");
+
+                            header("Location: /login");
+                        }
+                        else{
+                            http_response_code(500);
+                
+                            $message= "Internal Server Error";
+                            $title= "Error";
+        
+                            require("views/view.error.php");
+                            exit;
+                        }
+                    }
+                    else{
+                        $message= "Nova palavra-passe não pode ser igual a atual";
+                    }
+                }
+                else{
+                    $message= "Palavra-passe incorreta";
+                }
+
+            }
+            else{
+                $message= "Dados incorretos, confirme o preenchimento dos campos";
+            }
+        }
         
         require("views/view.profile.php");
         exit;

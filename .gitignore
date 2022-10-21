@@ -2,4 +2,5 @@
 *.env*
 *welcomeEmail.php*
 *newsletterEmail.php*
+*changePasswordEmail.php*
 *vendor/*

@@ -32,6 +32,21 @@
             return $query-> fetch();
         }
 
+        public function getUserPassword($data){
+            $query= $this-> db-> prepare("
+                SELECT
+                    password
+                FROM
+                    users
+                WHERE
+                    user_id= ?
+            ");
+
+            $query-> execute([$data["user_id"]]);
+
+            return $query-> fetch();
+        }
+
         public function create($data){
             $data= $this-> sanitizer($data);
 
@@ -133,6 +148,24 @@
             $user= $query-> fetch();
 
             return $user;
+        }
+
+        public function updatePassword($data){
+            $query= $this-> db-> prepare("
+                UPDATE 
+                    users
+                SET
+                    password= ?
+                WHERE
+                    user_id= ?
+            ");
+
+            $query-> execute([
+                password_hash($data["newPassword"], PASSWORD_DEFAULT),
+                $data["user_id"]
+            ]);
+
+            return $query-> rowCount();
         }
 
         public function delete($data){

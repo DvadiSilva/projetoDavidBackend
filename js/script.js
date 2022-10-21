@@ -119,4 +119,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const editUserCloseModals=document.querySelectorAll(".editUserCloseModal");
 
     createModal(editUserShowModals, editUserModalWrappers, editUserCloseModals);
+
+    //modal change password
+    const changePasswordShowModal=document.querySelector(".changePasswordShowModal");
+    const changePasswordModalWrapper=document.querySelector(".changePasswordModalWrapper");
+    const changePasswordCloseModal=document.querySelector(".changePasswordCloseModal");
+
+    changePasswordShowModal.addEventListener("click", ()=>{
+                
+        changePasswordModalWrapper.classList.remove("d-none");
+    });
+    
+
+    changePasswordCloseModal.addEventListener("click", ()=>{
+        changePasswordModalWrapper.classList.add("d-none");
+    });
 });
