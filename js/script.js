@@ -125,13 +125,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const changePasswordModalWrapper=document.querySelector(".changePasswordModalWrapper");
     const changePasswordCloseModal=document.querySelector(".changePasswordCloseModal");
 
-    changePasswordShowModal.addEventListener("click", ()=>{
-                
-        changePasswordModalWrapper.classList.remove("d-none");
-    });
-    
+    if(changePasswordShowModal){
 
-    changePasswordCloseModal.addEventListener("click", ()=>{
-        changePasswordModalWrapper.classList.add("d-none");
-    });
+        changePasswordShowModal.addEventListener("click", ()=>{
+            
+            changePasswordModalWrapper.classList.remove("d-none");
+        });
+        
+        
+        changePasswordCloseModal.addEventListener("click", ()=>{
+            changePasswordModalWrapper.classList.add("d-none");
+        });
+    }
 });
