@@ -44,7 +44,7 @@
             </div>
 <?php
     if(!isset($_SESSION["user"])){
-        echo '<a class="nav-link" href="/login">Login</a>';
+        echo '<a class="btn btn-dark mx-3" href="/login">Login</a>';
     }
     else{
         echo '
