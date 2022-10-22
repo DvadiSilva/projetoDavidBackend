@@ -159,6 +159,16 @@
                 mb_strlen($_POST["category_name"]) >= 3 &&
                 mb_strlen($_POST["category_name"]) <= 60
             ){
+                if(!is_numeric($_POST["editCategory_id"])){
+                    http_response_code(404);
+        
+                    $message= "Not Found";
+                    $title= "Error";
+                
+                    require("views/view.error.php");
+                    exit;
+                }
+
                 $category= $modelCategories-> update($_POST);
 
                 if(empty($category)){
@@ -180,6 +190,15 @@
 
 
         if(isset($_POST["removeCategory_id"])){
+            if(!is_numeric($_POST["removeCategory_id"])){
+                http_response_code(404);
+    
+                $message= "Not Found";
+                $title= "Error";
+            
+                require("views/view.error.php");
+                exit;
+            }
             $affectedCategory= $modelCategories-> delete($_POST);
 
             if(isset($affectedCategory)){
@@ -218,6 +237,15 @@
         if(
             isset($_POST["editUser_id"])
         ){
+            if(!is_numeric($_POST["editUser_id"])){
+                http_response_code(404);
+    
+                $message= "Not Found";
+                $title= "Error";
+            
+                require("views/view.error.php");
+                exit;
+            }
             $user= $modelUsers-> getUser($_POST);
             
             if(!isset($_POST["isSubscriber"])){
@@ -289,6 +317,16 @@
         }
 
         if(isset($_POST["removeUser_id"])){
+            if(!is_numeric($_POST["removeUser_id"])){
+                http_response_code(404);
+    
+                $message= "Not Found";
+                $title= "Error";
+            
+                require("views/view.error.php");
+                exit;
+            }
+            
             $affectedUser= $modelUsers-> delete($_POST);
 
             if(isset($affectedUser)){

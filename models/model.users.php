@@ -33,6 +33,8 @@
         }
 
         public function getUserPassword($data){
+            $data= $this-> sanitizer($data);
+
             $query= $this-> db-> prepare("
                 SELECT
                     password
@@ -151,6 +153,8 @@
         }
 
         public function updatePassword($data){
+            $data= $this-> sanitizer($data);
+
             $query= $this-> db-> prepare("
                 UPDATE 
                     users
