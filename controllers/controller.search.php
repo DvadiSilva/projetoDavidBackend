@@ -15,6 +15,16 @@ if(empty($categories)){
     exit;
 }
 
+if(!empty($id)){
+    http_response_code(400);
+    
+    $message= "Invalid URL";
+    $title= "Error";
+
+    require("views/view.error.php");
+    exit;
+}
+
 if(
     isset($_POST["send"])
 ){
