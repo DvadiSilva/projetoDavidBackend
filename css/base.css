@@ -34,6 +34,7 @@
 .adminNav{height: 50vh; min-width: 150px; background-image: linear-gradient(to right bottom, #ccc, #eee);
   right: 0;
   top: 25vh;
+  z-index: 10;
 }
 
 #navBarClose{
@@ -41,7 +42,7 @@
   top: 0;
   right: 0;
 }
-#navBarOpen{position: fixed; top:25vh; right:1vh;width: 30px; border-radius: 50%;background-image: linear-gradient(to right bottom, #ccc, #eee);}
+#navBarOpen{position: fixed; top:25vh; right:1vh;width: 30px; border-radius: 50%;background-image: linear-gradient(to right bottom, #ccc, #eee); z-index: 10;}
 .adminTable {
   font-family: arial, sans-serif;
   border-collapse: collapse;
