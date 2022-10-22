@@ -137,4 +137,20 @@ document.addEventListener("DOMContentLoaded", ()=>{
             changePasswordModalWrapper.classList.add("d-none");
         });
     }
+
+    //close navbar
+    const navBarClose= document.querySelector("#navBarClose");
+    const navBarOpen= document.querySelector("#navBarOpen");
+
+    if(navBarClose){
+        navBarClose.addEventListener("click", ()=>{
+            navBarClose.parentNode.classList.add("d-none");
+            navBarOpen.classList.remove("d-none");
+        });
+        
+        navBarOpen.addEventListener("click", ()=>{
+            navBarClose.parentNode.classList.remove("d-none");
+            navBarOpen.classList.add("d-none");
+        });
+    }
 });

@@ -3,7 +3,7 @@
     require("view.navBar.php");
 ?>
 
-    <div class="col-9">
+    <div class="col-11">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Noticias</h2>
             <a href="/admin/news/create" class="btn-close adminCreateButton" aria-label="create"></a>
@@ -28,7 +28,7 @@
     }
 ?>
         </table>
-        <nav>
+        <nav class="d-flex justify-content-center mt-3">
             <ul class="pagination">
                 <li class="page-item">
                     <a 

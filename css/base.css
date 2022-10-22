@@ -1,4 +1,17 @@
-.newsImg{max-width:300px; min-width: 250px;}
+.newsImg{max-width:300px; min-width: 300px; max-height: 230px;}
+.newsMessage{text-align: justify;}
+.commentImg{width: 3vw;height: 3vw; min-width: 50px; max-width: 60px; min-height: 60px; min-height: 50px;border-radius: 50%;}
+.commentButton svg{
+  rotate: 45deg;
+  position: absolute;
+  top: 8px;
+  left: 5px;
+}
+.commentButton{
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
 
 /*Eror*/
 #errorContainer{--bs-alert-color: #842029;--bs-alert-bg: #f8d7da;--bs-alert-border-color: #f5c2c7;}
@@ -11,63 +24,75 @@
 }
 
 /*Profile*/
+.profilePhoto{max-width:300px; min-width: 300px;}
 .profileCard{min-width: 1000px}
 .profileInput{width: 100%}
 .profileDl{font-size: large;}
 .changePassword{top: 1vw; right: 1vw; background: none; border: none}
 
 /*Admin*/
+.adminNav{height: 50vh; min-width: 150px; background-image: linear-gradient(to right bottom, #ccc, #eee);
+  right: 0;
+  top: 25vh;
+}
+
+#navBarClose{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#navBarOpen{position: fixed; top:25vh; right:1vh;width: 30px; border-radius: 50%;background-image: linear-gradient(to right bottom, #ccc, #eee);}
 .adminTable {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
   
-  .adminTable td, .adminTable th {
-    border: 1px solid #dddddd;
+.adminTable td, .adminTable th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+  
+.adminTable tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.adminCreateButton{ transform: rotate(45deg);}
+.adminContainer{max-width: 95vw;}
+
+#categoriesSubmitButton{ margin:0 1vw;}
+#categoryTh{text-align: left;}
+
+/*Modal*/
+.deleteCategoryModalWrapper, .editCategoryModalWrapper, 
+.deleteUserModalWrapper, .editUserModalWrapper, .changePasswordModalWrapper{
+    width:100vw;
+    height:100vh;
+    background:#333;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteCategoryModal, .editCategoryModal, .deleteUserModal, .editUserModal, .changePasswordModal{
+    min-width: 60vh;
+    min-height:30vh;
+    background:#FFF;
     text-align: center;
-    padding: 8px;
-  }
-  
-  .adminTable tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+    position:relative;
+}
 
-  .adminCreateButton{ transform: rotate(45deg);}
-  .adminContainer{max-width: 95vw;}
-
-  #categoriesSubmitButton{ margin:0 1vw;}
-  #categoryTh{text-align: left;}
-
-  /*Modal*/
-  .deleteCategoryModalWrapper, .editCategoryModalWrapper, 
-  .deleteUserModalWrapper, .editUserModalWrapper, .changePasswordModalWrapper{
-      width:100vw;
-      height:100vh;
-      background:#333;
-      position:fixed;
-      top:0;
-      left:0;
-      z-index:3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .deleteCategoryModal, .editCategoryModal, .deleteUserModal, .editUserModal, .changePasswordModal{
-      min-width: 60vh;
-      min-height:30vh;
-      background:#FFF;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items:center;
-      flex-direction:column;
-      position:relative;
-  }
-
-  #deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal, #changePasswordCloseModal{
-      position:absolute;
-      right:0;
-      top:0;
-  }
+#deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal, #changePasswordCloseModal{
+    position:absolute;
+    right:0;
+    top:0;
+}

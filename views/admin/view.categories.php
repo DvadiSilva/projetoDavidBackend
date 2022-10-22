@@ -3,7 +3,7 @@
     require("view.navBar.php");
 ?>
 
-    <div class="col-9">
+    <div class="col-11">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Categorias</h2>
             <form action="/admin/categories" method="post" class="d-none" id="categoriesCreateForm">

@@ -30,7 +30,7 @@
                 </ul>
 <?php
     if(isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"]== 1){
-        echo '<a class="nav-link" href="/admin">Painel de Controlo</a>';
+        echo '<a class="nav-link text-center" href="/admin">Painel de Controlo</a>';
     }
 ?>
                 <form class="d-flex align-items-center" action="/search" method="post">
@@ -49,7 +49,7 @@
     else{
         echo '
             <div class="d-flex align-items-center mx-3">
-                <a class="nav-link mx-3" href="/profile">'.$_SESSION["user"]["username"].'</a>
+                <a class="nav-link mx-3" href="/profile"><img src="'.$_SESSION["user"]["photo"].'" class="commentImg"></a>
                 <a class="btn btn-dark" href="/logout">Logout</a>
             </div>
         ';

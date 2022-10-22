@@ -17,10 +17,10 @@
                 </ul>
 <?php
     if(isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"]== 1){
-        echo '<a class="nav-link" href="/admin">Painel de Controlo</a>';
+        echo '<a class="nav-link text-center" href="/admin">Painel de Controlo</a>';
     }
     if($controller=== "profile" || $controller=== "admin"){
-        echo '<a class="nav-link" href="/logout">Logout</a>';
+        echo '<a class="btn btn-dark" href="/logout">Logout</a>';
     }
 ?>
             </div>

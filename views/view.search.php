@@ -1,11 +1,11 @@
 <?php
     require("layout/header.php");
 
-    echo count($news)==1 ?'<p>'.count($news).' resultado encontrado</p>':'<p>'.count($news).' resultados encontrados</p>';
+    echo count($news)==1 ?'<p class="text-center">'.count($news).' resultado encontrado</p>':'<p class="text-center">'.count($news).' resultados encontrados</p>';
 
     foreach($news as $newsSolo){
         echo '
-            <div class="card flex-row border-dark m-3 newsSolo">
+            <div class="card flex-row border-dark m-3 newsSolo align-items-center">
                 <img src="'.$newsSolo["image"].'" class="card-img-top p-3 newsImg" alt="...">
                 <div class="card-body d-flex flex-column justify-content-around">
                     <h3 class="card-title">'.$newsSolo["title"].'</h3>

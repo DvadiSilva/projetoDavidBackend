@@ -3,7 +3,7 @@
 
     foreach($news as $newsSolo){
         echo '
-            <div class="card flex-row border-dark m-3">
+            <div class="card flex-row border-dark m-3 align-items-center">
                 <img src="'.$newsSolo["image"].'" class="card-img-top p-3 newsImg" alt="...">
                 <div class="card-body d-flex flex-column justify-content-around">
                     <h3 class="card-title">'.$newsSolo["title"].'</h3>
@@ -25,7 +25,7 @@
         ';
     }
 ?>
-        <nav>
+        <nav class="d-flex justify-content-center">
             <ul class="pagination">
                 <li class="page-item">
                     <a class="page-link" href="/home/<?= empty($id)? "0":$id-1?>" aria-label="Previous">
