@@ -209,4 +209,44 @@ if(response.status==200){
             }
         });
     }
+
+
+    //modal delete comment
+    const deleteCommentShowModals=document.querySelectorAll(".deleteCommentShowModal");
+    const deleteCommentModalWrappers=document.querySelectorAll(".deleteCommentModalWrapper");
+    const deleteCommentCloseModals=document.querySelectorAll(".deleteCommentCloseModal");
+    const deleteCommentCloseModals2=document.querySelectorAll(".deleteCommentCloseModal2");
+    const deleteCommentButtons=document.querySelectorAll(".deleteCommentButton");
+
+    createModal(deleteCommentShowModals, deleteCommentModalWrappers, deleteCommentCloseModals);
+
+    for(let i = 0; i < deleteCommentCloseModals2.length; i++){
+
+        deleteCommentCloseModals2[i].addEventListener("click", ()=>{
+            deleteCommentModalWrappers[i].classList.add("d-none");
+        });
+    }
+
+    //butao "Sim" de user
+    for(let deleteCommentButton of deleteCommentButtons){
+        const removeCommentData= "removeComment_id="+deleteCommentButton.dataset.commentId;
+        const tr= deleteCommentButton.parentNode.parentNode.parentNode.parentNode.parentNode;
+        
+        deleteCommentButton.addEventListener("click", ()=>{
+            fetch("/admin/comments", {
+                method:"POST",
+                headers:{
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body:removeCommentData
+            })
+            .then(response=>{
+                if(response.status==200){
+                    tr.remove();
+                }else{
+                    alert("Ocorreu um erro, tente mais tarde");
+                }
+            });
+        });
+    }
 });

@@ -67,7 +67,7 @@
 
 /*Modal*/
 .deleteCategoryModalWrapper, .editCategoryModalWrapper, 
-.deleteUserModalWrapper, .editUserModalWrapper, .changePasswordModalWrapper{
+.deleteUserModalWrapper, .editUserModalWrapper, .changePasswordModalWrapper, .deleteCommentModalWrapper{
     width:100vw;
     height:100vh;
     background:#333;
@@ -80,7 +80,7 @@
     justify-content: center;
 }
 
-.deleteCategoryModal, .editCategoryModal, .deleteUserModal, .editUserModal, .changePasswordModal{
+.deleteCategoryModal, .editCategoryModal, .deleteUserModal, .editUserModal, .changePasswordModal, .deleteCommentModal{
     min-width: 60vh;
     min-height:30vh;
     background:#FFF;
@@ -92,7 +92,7 @@
     position:relative;
 }
 
-#deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal, #changePasswordCloseModal{
+#deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal, #changePasswordCloseModal, #deleteCommentCloseModal{
     position:absolute;
     right:0;
     top:0;

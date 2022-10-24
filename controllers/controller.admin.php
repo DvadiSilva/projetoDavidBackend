@@ -452,6 +452,33 @@
         $modelComments= new Comments();
         $comments= $modelComments-> getAllComments();
 
+        if(isset($_POST["removeComment_id"])){
+            if(!is_numeric($_POST["removeComment_id"])){
+                http_response_code(404);
+    
+                $message= "Not Found";
+                $title= "Error";
+            
+                require("views/view.error.php");
+                exit;
+            }
+            
+            $removedComment= $modelComments-> delete($_POST);
+
+            if(isset($removedComment)){
+                $message= "Comentário removido com sucesso";
+            }
+            else{
+                http_response_code(500);
+
+                $message= "Internal Server Error";
+                $title= "Error";
+
+                require("views/view.error.php");
+                exit;
+            }
+        }
+
         require("views/admin/view.comments.php");
         exit;
     }
