@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     if(createCategoryButton){
         createCategoryButton.addEventListener("click", ()=>{
             categoriesCreateForm.classList.remove("d-none");
-            categoriesCreateForm.classList.add("d-flex");
-            categoriesCreateForm.classList.add("align-items-center");
+            categoriesCreateForm.classList.add("d-flex", "align-items-center");
         });
     }
 
@@ -151,6 +150,63 @@ document.addEventListener("DOMContentLoaded", ()=>{
         navBarOpen.addEventListener("click", ()=>{
             navBarClose.parentNode.classList.remove("d-none");
             navBarOpen.classList.add("d-none");
+        });
+    }
+
+    //comment
+    const commentButton= document.querySelector(".commentButton");
+    const commentInput= document.querySelector("#commentInput")
+    const comments= document.querySelector(".comments");
+    const userPhoto= document.querySelector("#userPhoto");
+    const body= document.querySelector("body");
+
+    if(commentButton){
+
+        commentButton.addEventListener("click", ()=>{
+            if(commentInput.value.length>=1 && commentInput.value.length<= 140){
+
+                const data= "comment="+commentInput.value;
+                
+                fetch("/news/"+commentInput.dataset.newsId,{
+                    method:"POST",
+                    headers:{
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body:data
+                })
+                .then(response=>{
+if(response.status==200){
+    comments.prepend(document.createElement("div"));
+    comments.firstElementChild.classList.add("d-flex", "align-items-center", "p-3", "border", "rounded", "border-dark", "m-3", "bg-light", "bg-gradient", "position-relative");
+    
+    comments.firstElementChild.appendChild(document.createElement("img"));
+    comments.firstElementChild.lastElementChild.classList.add("commentImg");
+    comments.firstElementChild.lastElementChild.src= userPhoto.src;
+
+    comments.firstElementChild.appendChild(document.createElement("div"));
+    comments.firstElementChild.lastElementChild.classList.add("mx-3");
+    
+    comments.firstElementChild.lastElementChild.appendChild(document.createElement("p"));
+    comments.firstElementChild.lastElementChild.lastElementChild.classList.add("mb-0", "fw-bold");
+    comments.firstElementChild.lastElementChild.lastElementChild.textContent= userPhoto.dataset.username;
+
+    comments.firstElementChild.lastElementChild.appendChild(document.createElement("p"));
+    comments.firstElementChild.lastElementChild.lastElementChild.textContent= commentInput.value;
+    comments.firstElementChild.lastElementChild.lastElementChild.classList.add("mb-0");
+    
+    comments.firstElementChild.appendChild(document.createElement("div"));
+    comments.firstElementChild.lastElementChild.classList.add("position-absolute", "bottom-0", "end-0", "m-3");
+
+    comments.firstElementChild.lastElementChild.appendChild(document.createElement("time"));
+    comments.firstElementChild.lastElementChild.lastElementChild.textContent= "Agora";
+
+    
+    commentInput.value= "";
+}else{
+    alert("Ocorreu um erro, tente mais tarde");
+}
+                });
+            }
         });
     }
 });
