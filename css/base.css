@@ -1,5 +1,7 @@
 .newsImg{max-width:300px; min-width: 300px; max-height: 230px;}
 .newsMessage{text-align: justify;}
+
+.adminNewsImg{width: 5vw; max-height: 3vw;}
 .commentImg{width: 3vw;height: 3vw; min-width: 50px; max-width: 60px; min-height: 60px; min-height: 50px;border-radius: 50%;}
 .commentButton svg{
   rotate: 45deg;
@@ -67,7 +69,7 @@
 
 /*Modal*/
 .deleteCategoryModalWrapper, .editCategoryModalWrapper, 
-.deleteUserModalWrapper, .editUserModalWrapper, .changePasswordModalWrapper, .deleteCommentModalWrapper{
+.deleteUserModalWrapper, .editUserModalWrapper, .changePasswordModalWrapper, .deleteCommentModalWrapper, .deleteNewsModalWrapper{
     width:100vw;
     height:100vh;
     background:#333;
@@ -80,7 +82,7 @@
     justify-content: center;
 }
 
-.deleteCategoryModal, .editCategoryModal, .deleteUserModal, .editUserModal, .changePasswordModal, .deleteCommentModal{
+.deleteCategoryModal, .editCategoryModal, .deleteUserModal, .editUserModal, .changePasswordModal, .deleteCommentModal, .deleteNewsModal{
     min-width: 60vh;
     min-height:30vh;
     background:#FFF;
@@ -92,7 +94,7 @@
     position:relative;
 }
 
-#deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal, #changePasswordCloseModal, #deleteCommentCloseModal{
+#deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal, #changePasswordCloseModal, #deleteCommentCloseModal, #deleteNewsCloseModal{
     position:absolute;
     right:0;
     top:0;

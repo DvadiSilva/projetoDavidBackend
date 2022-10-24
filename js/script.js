@@ -227,7 +227,7 @@ if(response.status==200){
         });
     }
 
-    //butao "Sim" de user
+    //butao "Sim" de comment
     for(let deleteCommentButton of deleteCommentButtons){
         const removeCommentData= "removeComment_id="+deleteCommentButton.dataset.commentId;
         const tr= deleteCommentButton.parentNode.parentNode.parentNode.parentNode.parentNode;
@@ -239,6 +239,45 @@ if(response.status==200){
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 body:removeCommentData
+            })
+            .then(response=>{
+                if(response.status==200){
+                    tr.remove();
+                }else{
+                    alert("Ocorreu um erro, tente mais tarde");
+                }
+            });
+        });
+    }
+
+    //modal delete news
+    const deleteNewsShowModals=document.querySelectorAll(".deleteNewsShowModal");
+    const deleteNewsModalWrappers=document.querySelectorAll(".deleteNewsModalWrapper");
+    const deleteNewsCloseModals=document.querySelectorAll(".deleteNewsCloseModal");
+    const deleteNewsCloseModals2=document.querySelectorAll(".deleteNewsCloseModal2");
+    const deleteNewsButtons=document.querySelectorAll(".deleteNewsButton");
+
+    createModal(deleteNewsShowModals, deleteNewsModalWrappers, deleteNewsCloseModals);
+
+    for(let i = 0; i < deleteNewsCloseModals2.length; i++){
+
+        deleteNewsCloseModals2[i].addEventListener("click", ()=>{
+            deleteNewsModalWrappers[i].classList.add("d-none");
+        });
+    }
+
+    //butao "Sim" de user
+    for(let deleteNewsButton of deleteNewsButtons){
+        const removeNewsData= "removeNews_id="+deleteNewsButton.dataset.newsId;
+        const tr= deleteNewsButton.parentNode.parentNode.parentNode.parentNode.parentNode;
+        
+        deleteNewsButton.addEventListener("click", ()=>{
+            fetch("/admin/news", {
+                method:"POST",
+                headers:{
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body:removeNewsData
             })
             .then(response=>{
                 if(response.status==200){

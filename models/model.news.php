@@ -206,5 +206,21 @@
             return $this-> db-> lastInsertId();
         }
 
+        public function delete($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                DELETE FROM
+                    news
+                WHERE 
+                    news_id= ?
+            ");
+
+            $query-> execute([
+                $data["removeNews_id"]
+            ]);
+
+            return $query-> rowCount();
+        }
     }
 ?>

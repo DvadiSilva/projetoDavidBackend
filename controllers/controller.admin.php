@@ -37,10 +37,65 @@
 
         if(empty($page)){
             $news= $modelNews-> getTenNews();
+
+            if(isset($_POST["removeNews_id"])){
+                if(!is_numeric($_POST["removeNews_id"])){
+                    http_response_code(404);
+        
+                    $message= "Not Found";
+                    $title= "Error";
+                
+                    require("views/view.error.php");
+                    exit;
+                }
+                
+                $removedNews= $modelNews-> delete($_POST);
+
+                if(isset($removedNews)){
+                    $message= "Notícia removida com sucesso";
+                }
+                else{
+                    http_response_code(500);
+
+                    $message= "Internal Server Error";
+                    $title= "Error";
+
+                    require("views/view.error.php");
+                    exit;
+                }
+            }
         }
         else if(isset($page) && is_numeric($page) && $page> 0 && $page <=$maxPage){
             $news= $modelNews-> getNextAdminNews($page);
+
+            if(isset($_POST["removeNews_id"])){
+                if(!is_numeric($_POST["removeNews_id"])){
+                    http_response_code(404);
+        
+                    $message= "Not Found";
+                    $title= "Error";
+                
+                    require("views/view.error.php");
+                    exit;
+                }
+                
+                $removedNews= $modelNews-> delete($_POST);
+
+                if(isset($removedNews)){
+                    $message= "Notícia removida com sucesso";
+                }
+                else{
+                    http_response_code(500);
+
+                    $message= "Internal Server Error";
+                    $title= "Error";
+
+                    require("views/view.error.php");
+                    exit;
+                }
+            }
         }
+
         else if(isset($url_parts[3]) && $url_parts[3]=== "create"){
             require("models/model.categories.php");
 
