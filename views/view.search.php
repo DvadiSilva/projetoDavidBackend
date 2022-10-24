@@ -5,7 +5,7 @@
 
     foreach($news as $newsSolo){
         echo '
-            <div class="card flex-row border-dark m-3 newsSolo align-items-center">
+            <div class="card flex-row border-dark m-3 newsSolo align-items-center bg-light bg-gradient">
                 <img src="'.$newsSolo["image"].'" class="card-img-top p-3 newsImg" alt="...">
                 <div class="card-body d-flex flex-column justify-content-around">
                     <h3 class="card-title">'.$newsSolo["title"].'</h3>

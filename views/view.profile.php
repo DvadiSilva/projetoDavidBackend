@@ -4,7 +4,7 @@
     echo isset($message)? $message: "";
 ?>
   
-  <div class="card flex-row border-dark m-3 profileCard position-relative align-items-center">
+  <div class="card flex-row border-dark m-3 profileCard position-relative align-items-center bg-light bg-gradient">
         <img src="<?= $_SESSION["user"]["photo"] ?>" class="card-img-top p-3 profilePhoto" alt="...">
         <div class="card-body overflow-auto">
             <h2 class="card-title"><?= $_SESSION["user"]["name"] ?></h2>
