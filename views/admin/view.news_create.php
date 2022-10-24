@@ -3,7 +3,7 @@
     require("view.navBar.php");
 ?>
 
-<div class="col-9">
+<div class="col-11">
         <h2>Criação de notícia</h2>
         <?= isset($message)? $message: ""?>
         <form action="/admin/news/create" method="post" enctype="multipart/form-data">
