@@ -153,6 +153,113 @@
             require("views/admin/view.news_create.php");
             exit;
         }
+        else if(isset($url_parts[3]) && $url_parts[3]=== "edit"){
+            require("models/model.categories.php");
+
+            $modelCategories= new Categories();
+            $categories= $modelCategories-> getAllCategories();
+
+            $validIds= [];
+
+            foreach($allNews as $news){
+                $validIds[]= $news["news_id"];
+            }
+            
+            if(empty($url_parts[4]) || !is_numeric($url_parts[4])){
+                http_response_code(404);
+
+                $message= "Invalid URL";
+                $title= "Error";
+
+                require("views/view.error.php");
+                exit;
+            }
+            if(!in_array($url_parts[4], $validIds)){
+                http_response_code(404);
+        
+                $message= "Not Found";
+                $title= "Error";
+            
+                require("views/view.error.php");
+                exit;
+            }
+
+            $news_id= $url_parts[4];
+            $news= $modelNews-> getSoloNews($news_id);
+
+            if(empty($news)){
+                http_response_code(500);
+
+                $message= "Internal Server Error";
+                $title= "Error";
+
+                require("views/view.error.php");
+                exit;
+            }
+
+            if(
+                isset($_POST["send"])
+            ){
+                if(
+                    !empty($_POST["title"]) &&
+                    !empty($_POST["summary"]) &&
+                    !empty($_POST["message"]) &&
+                    mb_strlen($_POST["title"])>=3 &&
+                    mb_strlen($_POST["title"])<=140
+                ){
+                    if(empty($_POST["category_id"]) || !is_numeric($_POST["category_id"])){
+                        $_POST["category_id"]= $news["category_id"];
+                    }
+
+                    if(
+                        isset($_FILES["image"]) &&
+                        $_FILES["image"]["error"]=== 0 &&
+                        ($_FILES["image"]["type"]=== "image/png" || 
+                        $_FILES["image"]["type"]=== "image/jpeg") &&
+                        $_FILES["image"]["size"] > 0 &&
+                        $_FILES["image"]["size"] < 2 * 1024 * 1024
+                    ){
+                        if($_FILES["image"]["type"]=== "image/png"){
+                            $imagename= date("YmdHis")."_".mt_rand(10000000, 99999999).".png";
+                        }
+                        else{
+                            $imagename= date("YmdHis")."_".mt_rand(10000000, 99999999).".jpeg";
+                        }
+        
+                        move_uploaded_file($_FILES["image"]["tmp_name"], "images/news/".$imagename);
+        
+                        $_POST["image"]= "/images/news/".$imagename;
+
+                    }
+                    else{
+                        $_POST["image"]= $news["image"];
+                    }
+                    $_POST["news_id"]= $news_id;
+                    $updatedNews= $modelNews-> update($_POST);
+
+                    if(isset($updatedNews)){
+                        $message= "Noticia atualizada com sucesso";
+
+                        header("Location: /news/".$news_id);
+                    }
+                    else{
+                        http_response_code(500);
+
+                        $message= "Internal Server Error";
+                        $title= "Error";
+
+                        require("views/view.error.php");
+                        exit;
+                    }
+                }
+                else{
+                    $message= "Dados incorretos, confirme o preenchimento dos campos";
+                }
+            }
+
+            require("views/admin/view.news_edit.php");
+            exit;
+        }
         else{
             http_response_code(404);
 

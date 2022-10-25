@@ -20,6 +20,23 @@
             return $query-> fetchAll();
         }
 
+        public function getSoloNews($id){
+            $query= $this-> db-> prepare("
+                SELECT
+                    news.news_id, news.title, news.summary, news.message, news.post_date, news.image, news.category_id, categories.name
+                FROM
+                    news
+                INNER JOIN
+                    categories USING(category_id)
+                WHERE
+                    news_id= ?
+            ");
+
+            $query->execute([$id]);
+
+            return $query-> fetch();
+        }
+
         //News Homepage
         public function getTenNews(){
             $query= $this-> db-> prepare("
@@ -118,21 +135,6 @@
             return $query-> fetchAll();
         }
 
-        public function getSoloNews($id){
-            $query= $this-> db-> prepare("
-                SELECT
-                    news_id, title, summary, message, post_date, image
-                FROM
-                    news
-                WHERE
-                    news_id= ?
-            ");
-
-            $query->execute([$id]);
-
-            return $query-> fetch();
-        }
-
         //News Search
         public function getSearchNews($data){
             $data= htmlspecialchars(strip_tags(trim($data)));
@@ -218,6 +220,30 @@
 
             $query-> execute([
                 $data["removeNews_id"]
+            ]);
+
+            return $query-> rowCount();
+        }
+
+        public function update($data){
+            $data= $this-> sanitizer($data);
+
+            $query= $this-> db-> prepare("
+                UPDATE 
+                    news
+                SET
+                    title= ?, summary= ?, message= ?, image= ?, category_id= ?
+                WHERE
+                    news_id= ?
+            ");
+
+            $query-> execute([
+                $data["title"],
+                $data["summary"],
+                $data["message"],
+                $data["image"],
+                $data["category_id"],
+                $data["news_id"]
             ]);
 
             return $query-> rowCount();

@@ -2,6 +2,8 @@
 .newsMessage{text-align: justify;}
 
 .adminNewsImg{width: 5vw; max-height: 3vw;}
+
+.newsEditImg{ width: 5vw;}
 .commentImg{width: 3vw;height: 3vw; min-width: 50px; max-width: 60px; min-height: 60px; min-height: 50px;border-radius: 50%;}
 .commentButton svg{
   rotate: 45deg;
