@@ -1,7 +1,7 @@
 <?php
     require("layout/header.php");
 
-    echo count($news)==1 ?'<p class="text-center">'.count($news).' resultado encontrado</p>':'<p class="text-center">'.count($news).' resultados encontrados</p>';
+    echo count($_SESSION["lastSearchNews"])==1 ?'<p class="text-center">'.count($_SESSION["lastSearchNews"]).' resultado encontrado</p>':'<p class="text-center">'.count($_SESSION["lastSearchNews"]).' resultados encontrados</p>';
 
     foreach($news as $newsSolo){
         echo '
@@ -26,6 +26,42 @@
             </div>
         ';
     }
-
-    require("layout/footer.php");
 ?>
+
+        <nav class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="/search/<?= empty($page)? "0":$page-1?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a 
+                        class="page-link" 
+                        href="/search/<?= empty($page)? "0":$page-1?>">
+                            <?= empty($page)? "-":$page-1?>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a 
+                        class="page-link" 
+                        href="/search/<?= empty($page)? "0":$page?>">
+                            <?= empty($page)? "0":$page?>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a 
+                        class="page-link"
+                        href="/search/<?= empty($page)? "1":$page+1?>">
+                            <?= empty($page)? "1":$page+1?>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/search/<?= empty($page)? "1":$page+1?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </body>
+</html>

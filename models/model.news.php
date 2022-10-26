@@ -136,7 +136,7 @@
         }
 
         //News Search
-        public function getSearchNews($data){
+        public function getAllSearchNews($data){
             $data= htmlspecialchars(strip_tags(trim($data)));
 
             $query= $this-> db-> prepare("
@@ -151,6 +151,66 @@
                     post_date LIKE ?
                 ORDER BY
                     post_date DESC
+            ");
+
+            $query-> execute([
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%'
+            ]);
+
+            return $query-> fetchAll();
+        }
+
+        public function getTenSearchNews($data){
+            $data= htmlspecialchars(strip_tags(trim($data)));
+
+            $query= $this-> db-> prepare("
+                SELECT 
+                    news_id, title, summary, post_date, image
+                FROM 
+                    news 
+                WHERE 
+                    title LIKE ? OR 
+                    summary LIKE ? OR 
+                    message LIKE ? OR
+                    post_date LIKE ?
+                ORDER BY
+                    post_date DESC
+                LIMIT
+                    10
+            ");
+
+            $query-> execute([
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%'
+            ]);
+
+            return $query-> fetchAll();
+        }
+
+        public function getNextSearchNews($data, $page){
+            $data= htmlspecialchars(strip_tags(trim($data)));
+            
+            $currentPage= $page*10;
+
+            $query= $this-> db-> prepare("
+                SELECT 
+                    news_id, title, summary, post_date, image
+                FROM 
+                    news 
+                WHERE 
+                    title LIKE ? OR 
+                    summary LIKE ? OR 
+                    message LIKE ? OR
+                    post_date LIKE ?
+                ORDER BY
+                    post_date DESC
+                LIMIT
+                    $currentPage, 10
             ");
 
             $query-> execute([

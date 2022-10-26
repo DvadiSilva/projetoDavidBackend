@@ -5,6 +5,8 @@ require("models/model.news.php");
 $modelCategories= new Categories();
 $categories= $modelCategories-> getAllCategories();
 
+$modelNews= new News();
+
 if(empty($categories)){
     http_response_code(500);
 
@@ -15,7 +17,9 @@ if(empty($categories)){
     exit;
 }
 
-if(!empty($id)){
+$page= $url_parts[2] ?? "";
+
+if(!empty($page) && !is_numeric($page)){
     http_response_code(400);
     
     $message= "Invalid URL";
@@ -32,10 +36,9 @@ if(
         mb_strlen($_POST["search"])>= 1   &&
         mb_strlen($_POST["search"])<= 30
     ){
-        $modelNews= new News();
-        $news= $modelNews-> getSearchNews($_POST["search"]);
+        $allNews= $modelNews-> getAllSearchNews($_POST["search"]);
 
-        if(empty($news)){
+        if(empty($allNews)){
             http_response_code(404);
         
             $message= "No results for search";
@@ -44,10 +47,20 @@ if(
             require("views/view.error.php");
             exit;
         }
+        $_SESSION["lastSearch"]= htmlspecialchars(strip_tags(trim($_POST["search"])));
+        $_SESSION["lastSearchMaxPage"]= round(count($allNews)/10, 0, PHP_ROUND_HALF_UP) +1;
+        $_SESSION["lastSearchNews"]= $allNews;
+
+        $maxPage= round(count($allNews)/10, 0, PHP_ROUND_HALF_UP) +1;
+
+        if(empty($page)){
+            $news= $modelNews-> getTenSearchNews($_POST["search"]);
+        }
         
         $title="Search";
 
         require("views/view.search.php");
+        exit;
     }
     else{
         http_response_code(400);
@@ -58,4 +71,39 @@ if(
         require("views/view.error.php");
         exit;
     }
+}
+
+if($page== 0){
+    $news= $modelNews-> getTenSearchNews($_SESSION["lastSearch"]);
+
+    $title="Search";
+
+    require("views/view.search.php");
+}
+
+elseif(!empty($page) && is_numeric($page) && $page> 0 && $page <=$_SESSION["lastSearchMaxPage"]){
+    $news= $modelNews-> getNextSearchNews($_SESSION["lastSearch"], $page);
+
+    $title="Search";
+
+    if(empty($news)){
+        http_response_code(404);
+    
+        $message= "Not Found";
+        $title= "Error";
+    
+        require("views/view.error.php");
+        exit;
+    }
+
+    require("views/view.search.php");
+}
+else{
+    http_response_code(400);
+    
+    $message= "Invalid URL";
+    $title= "Error";
+
+    require("views/view.error.php");
+    exit;
 }
