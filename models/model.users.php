@@ -96,7 +96,7 @@
                 $data["email"],
                 password_hash($data["password"], PASSWORD_DEFAULT),
                 $data["phone"],
-                $data["photo"],
+                isset($data["photo"])? $data: "/images/defaultUserPic.png",
                 isset($data["isSubscriber"])? $data["isSubscriber"]: 0,
                 isset($data["isWriter"])? $data["isWriter"]: 0,
                 isset($data["isAdmin"])? $data["isAdmin"]: 0,

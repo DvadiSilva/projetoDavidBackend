@@ -49,6 +49,7 @@
     else{
         echo '
             <div class="d-flex align-items-center mx-3">
+                <a class="nav-link" href="/profile">'.$_SESSION["user"]["username"].'</a>
                 <a class="nav-link mx-3" href="/profile"><img src="'.$_SESSION["user"]["photo"].'" class="commentImg" id="userPhoto" data-username="'.$_SESSION["user"]["username"].'"></a>
                 <a class="btn btn-dark" href="/logout">Logout</a>
             </div>
