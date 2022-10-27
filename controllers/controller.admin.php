@@ -661,7 +661,56 @@
         require("models/model.comments.php");
 
         $modelComments= new Comments();
-        $comments= $modelComments-> getAllComments();
+
+        if(!empty($page) && !is_numeric($page)){
+            http_response_code(404);
+    
+            $message= "Invalid URL";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        $allComments= $modelComments-> getAllComments();
+
+        if(empty($allComments)){
+            http_response_code(404);
+    
+            $message= "Not Found";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        $maxPage= round(count($allComments)/10, 0, PHP_ROUND_HALF_UP) +1;
+
+        if(empty($page) || $page== 0){
+            $comments= $modelComments-> getTenComments();
+        }
+        elseif($page<= $maxPage){
+            $comments= $modelComments-> getNextComments($page);
+        }
+        else{
+            http_response_code(404);
+    
+            $message= "Invalid URL";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        if(empty($comments)){
+            http_response_code(404);
+    
+            $message= "Not Found";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
 
         if(isset($_POST["removeComment_id"])){
             if(!is_numeric($_POST["removeComment_id"])){

@@ -20,6 +20,46 @@
             return $query-> fetchAll();
         }
 
+        public function getTenComments(){
+            $query= $this-> db-> prepare("
+                SELECT
+                    comments.comment_id, comments.user_id, comments.message, comments.post_date, users.username, news.title
+                FROM
+                    comments
+                INNER JOIN
+                    users USING(user_id)
+                INNER JOIN
+                    news USING(news_id)
+                LIMIT
+                    10
+            ");
+
+            $query-> execute();
+
+            return $query-> fetchAll();
+        }
+
+        public function getNextComments($page){
+            $currentPage= $page*10;
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    comments.comment_id, comments.user_id, comments.message, comments.post_date, users.username, news.title
+                FROM
+                    comments
+                INNER JOIN
+                    users USING(user_id)
+                INNER JOIN
+                    news USING(news_id)
+                LIMIT
+                    $currentPage, 10
+            ");
+
+            $query-> execute();
+
+            return $query-> fetchAll();
+        }
+
         public function getNewsComments($id){
             $query= $this-> db-> prepare("
                 SELECT
