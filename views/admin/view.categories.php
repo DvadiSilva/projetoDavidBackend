@@ -77,6 +77,41 @@
         </table>
     </div>
 </section>
+<nav class="d-flex justify-content-center">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="/admin/categories/<?= empty($page)? "0":$page-1?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a 
+                class="page-link" 
+                href="/admin/categories/<?= empty($page)? "0":$page-1?>">
+                    <?= empty($page)? "-":$page-1?>
+            </a>
+        </li>
+        <li class="page-item">
+            <a 
+                class="page-link" 
+                href="/admin/categories/<?= empty($page)? "0":$page?>">
+                    <?= empty($page)? "0":$page?>
+            </a>
+        </li>
+        <li class="page-item">
+            <a 
+                class="page-link"
+                href="/admin/categories/<?= empty($page)? "1":$page+1?>">
+                    <?= empty($page)? "1":$page+1?>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="/admin/categories/<?= empty($page)? "1":$page+1?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <?php
     require("views/layout/footer.php");

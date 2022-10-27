@@ -16,6 +16,38 @@
             return $query-> fetchAll();
         }
 
+        public function getTenCategories(){
+            $query= $this-> db-> prepare("
+                SELECT
+                    category_id, name
+                FROM
+                    categories
+                LIMIT
+                    10
+            ");
+
+            $query-> execute();
+
+            return $query-> fetchAll();
+        }
+
+        public function getNextCategories($page){
+            $currentPage= $page*10;
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    category_id, name
+                FROM
+                    categories
+                LIMIT
+                    $currentPage, 10
+            ");
+
+            $query-> execute();
+
+            return $query-> fetchAll();
+        }
+
         public function getCategory($id){
             $query= $this-> db-> prepare("
                 SELECT

@@ -287,7 +287,56 @@
         require("models/model.categories.php");
 
         $modelCategories= new Categories();
-        $categories= $modelCategories-> getAllCategories();
+
+        if(!empty($page) && !is_numeric($page)){
+            http_response_code(404);
+    
+            $message= "Invalid URL";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        $allCategories= $modelCategories-> getAllCategories();
+
+        if(empty($allCategories)){
+            http_response_code(404);
+    
+            $message= "Not Found";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        $maxPage= round(count($allCategories)/10, 0, PHP_ROUND_HALF_UP) +1;
+
+        if(empty($page) || $page== 0){
+            $categories= $modelCategories-> getTenCategories();
+        }
+        elseif($page<= $maxPage){
+            $categories= $modelCategories-> getNextCategories($page);
+        }
+        else{
+            http_response_code(404);
+    
+            $message= "Invalid URL";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        if(empty($categories)){
+            http_response_code(404);
+    
+            $message= "Not Found";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
 
         if(isset($_POST["send"])){
 
