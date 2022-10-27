@@ -15,6 +15,38 @@
             return $query-> fetchAll();
         }
 
+        public function getTenUsers(){
+            $query= $this-> db-> prepare("
+                SELECT
+                    user_id, name, username, email, phone, isSubscriber, isWriter, isAdmin
+                FROM
+                    users
+                LIMIT
+                    10
+            ");
+
+            $query-> execute();
+
+            return $query-> fetchAll();
+        }
+
+        public function getNextUsers($page){
+            $currentPage= $page*10;
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    user_id, name, username, email, phone, isSubscriber, isWriter, isAdmin
+                FROM
+                    users
+                LIMIT
+                    $currentPage, 10
+            ");
+
+            $query-> execute();
+
+            return $query-> fetchAll();
+        }
+
         public function getUser($data){
             $data= $this-> sanitizer($data);
 

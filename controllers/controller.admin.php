@@ -27,7 +27,7 @@
         require("views/admin/view.admin.php");
         exit;
     }
-    else if(isset($url_parts[2]) && $url_parts[2]=== "news"){
+    elseif(isset($url_parts[2]) && $url_parts[2]=== "news"){
         require("models/model.news.php");
 
         $modelNews= new News();
@@ -65,7 +65,7 @@
                 }
             }
         }
-        else if(isset($page) && is_numeric($page) && $page> 0 && $page <=$maxPage){
+        elseif(isset($page) && is_numeric($page) && $page> 0 && $page <=$maxPage){
             $news= $modelNews-> getNextAdminNews($page);
 
             if(isset($_POST["removeNews_id"])){
@@ -96,7 +96,7 @@
             }
         }
 
-        else if(isset($url_parts[3]) && $url_parts[3]=== "create"){
+        elseif(isset($url_parts[3]) && $url_parts[3]=== "create"){
             require("models/model.categories.php");
 
             $modelCategories= new Categories();
@@ -153,7 +153,7 @@
             require("views/admin/view.news_create.php");
             exit;
         }
-        else if(isset($url_parts[3]) && $url_parts[3]=== "edit"){
+        elseif(isset($url_parts[3]) && $url_parts[3]=== "edit"){
             require("models/model.categories.php");
 
             $modelCategories= new Categories();
@@ -283,7 +283,7 @@
         require("views/admin/view.news.php");
         exit;
     }
-    else if(isset($url_parts[2]) && $url_parts[2]=== "categories"){
+    elseif(isset($url_parts[2]) && $url_parts[2]=== "categories"){
         require("models/model.categories.php");
 
         $modelCategories= new Categories();
@@ -382,11 +382,60 @@
         require("views/admin/view.categories.php");
         exit;
     }
-    else if(isset($url_parts[2]) && $url_parts[2]=== "users"){
+    elseif(isset($url_parts[2]) && $url_parts[2]=== "users"){
         require("models/model.users.php");
 
         $modelUsers= new Users();
-        $users= $modelUsers-> getAllUsers();
+
+        if(!empty($page) && !is_numeric($page) && $page!="create"){
+            http_response_code(404);
+    
+            $message= "Invalid URL";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        $allUsers= $modelUsers-> getAllUsers();
+
+        if(empty($allUsers)){
+            http_response_code(404);
+    
+            $message= "Not Found";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        $maxPage= round(count($allUsers)/10, 0, PHP_ROUND_HALF_UP) +1;
+
+        if(empty($page) || $page== 0){
+            $users= $modelUsers-> getTenUsers();
+        }
+        elseif($page<= $maxPage){
+            $users= $modelUsers-> getNextUsers($page);
+        }
+        else{
+            http_response_code(404);
+    
+            $message= "Invalid URL";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
+
+        if(empty($users)){
+            http_response_code(404);
+    
+            $message= "Not Found";
+            $title= "Error";
+        
+            require("views/view.error.php");
+            exit;
+        }
 
         $usernames= [];
         $emails= [];
@@ -608,7 +657,7 @@
         require("views/admin/view.users.php");
         exit;
     }
-    else if(isset($url_parts[2]) && $url_parts[2]=== "comments"){
+    elseif(isset($url_parts[2]) && $url_parts[2]=== "comments"){
         require("models/model.comments.php");
 
         $modelComments= new Comments();

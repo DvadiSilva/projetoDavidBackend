@@ -46,7 +46,7 @@
     if(empty($page)){
         $news= $modelNews-> getTenCategoryNews($id);
     }
-    else if(!empty($page) && is_numeric($page) && $page> 0 && $page <=$maxPage){
+    elseif(!empty($page) && is_numeric($page) && $page> 0 && $page <=$maxPage){
         $news= $modelNews-> getNextCategoryNews($id, $page);
     }
     else{
