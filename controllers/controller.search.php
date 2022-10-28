@@ -76,7 +76,7 @@ if(
 if($page== 0){
     $news= $modelNews-> getTenSearchNews($_SESSION["lastSearch"]);
 
-    $title="Search";
+    $title="Pesquisa";
 
     require("views/view.search.php");
 }
@@ -84,7 +84,7 @@ if($page== 0){
 elseif(!empty($page) && is_numeric($page) && $page> 0 && $page <=$_SESSION["lastSearchMaxPage"]){
     $news= $modelNews-> getNextSearchNews($_SESSION["lastSearch"], $page);
 
-    $title="Search";
+    $title="Pesquisa";
 
     if(empty($news)){
         http_response_code(404);
