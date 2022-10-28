@@ -606,6 +606,34 @@
 
         }
 
+        if(isset($_POST["searchUser"])){
+            if(
+                mb_strlen($_POST["searchUser"])>= 1   &&
+                mb_strlen($_POST["searchUser"])<= 30
+            ){
+                $users= $modelUsers-> search($_POST["searchUser"]);
+
+                if(empty($users)){
+                    http_response_code(404);
+                
+                    $message= "No results for search";
+                    $title= "Error";
+                
+                    require("views/view.error.php");
+                    exit;
+                }
+            }
+            else{
+                http_response_code(400);
+                
+                $message= "Please fill the fields";
+                $title= "Error";
+            
+                require("views/view.error.php");
+                exit;
+            }
+        }
+
         if(isset($url_parts[3]) && $url_parts[3]=== "create"){
             
             if(isset($_POST["send"])){

@@ -246,4 +246,31 @@
 
             return $query-> rowCount();
         }
+
+        public function search($data){
+            $data= htmlspecialchars(strip_tags(trim($data)));
+
+            $query= $this-> db-> prepare("
+                SELECT
+                    user_id, name, username, email, phone, isSubscriber, isWriter, isAdmin
+                FROM
+                    users
+                WHERE 
+                    user_id LIKE ? OR 
+                    name LIKE ? OR 
+                    username LIKE ? OR
+                    email LIKE ? OR
+                    phone LIKE ?
+            ");
+
+            $query-> execute([
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%',
+                '%'.$data.'%'
+            ]);
+
+            return $query-> fetchAll();
+        }
     }

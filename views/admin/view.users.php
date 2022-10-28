@@ -6,7 +6,14 @@
     <div class="col-11">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Utilizadores</h2>
-            <?= isset($message)? $message: ""?>
+            <form class="d-flex align-items-center" action="/admin/users" method="post">
+                <input type="text" name="searchUser" aria-label="search user" placeholder="Pesquisar Utilizador" minlength="1" maxlength="30">
+                <button type="submit" class="btn btn-primary" name="send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </form>
             <a href="/admin/users/create" class="btn-close adminCreateButton" aria-label="create"></a>
         </div>
         <table class="adminTable mb-3">
@@ -122,42 +129,49 @@
         </table>
     </div>
 </section>
-<nav class="d-flex justify-content-center">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="/admin/users/<?= empty($page)? "0":$page-1?>" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item">
-            <a 
-                class="page-link" 
-                href="/admin/users/<?= empty($page)? "0":$page-1?>">
-                    <?= empty($page)? "-":$page-1?>
-            </a>
-        </li>
-        <li class="page-item">
-            <a 
-                class="page-link" 
-                href="/admin/users/<?= empty($page)? "0":$page?>">
-                    <?= empty($page)? "0":$page?>
-            </a>
-        </li>
-        <li class="page-item">
-            <a 
-                class="page-link"
-                href="/admin/users/<?= empty($page)? "1":$page+1?>">
-                    <?= empty($page)? "1":$page+1?>
-            </a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="/admin/users/<?= empty($page)? "1":$page+1?>" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
 <?php
+    if(isset($_POST["searchUser"])){
+        echo '';
+    }
+    else{
+        echo '
+            <nav class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="/admin/users/'.(empty($page)? "0":$page-1).'" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a 
+                            class="page-link" 
+                            href="/admin/users/'.(empty($page)? "0":$page-1).'">
+                                '.(empty($page)? "-":$page-1).'
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a 
+                            class="page-link" 
+                            href="/admin/users/'.(empty($page)? "0":$page).'">
+                                '.(empty($page)? "0":$page).'
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a 
+                            class="page-link"
+                            href="/admin/users/'.(empty($page)? "1":$page+1).'">
+                                '.(empty($page)? "1":$page+1).'
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="/admin/users/'.(empty($page)? "1":$page+1).'" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        ';
+    }
+
     require("views/layout/footer.php");
 ?>
