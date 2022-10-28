@@ -44,7 +44,7 @@
                     </dl>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary" type="submit" name="send">Guardar</button>
+                    <button class="btn btn-success" type="submit" name="send">Guardar</button>
                 </div>
             </form>
         </div>
