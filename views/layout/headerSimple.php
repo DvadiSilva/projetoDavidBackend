@@ -17,7 +17,10 @@
                 </ul>
 <?php
     if(isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"]== 1){
-        echo '<a class="nav-link text-center" href="/admin">Painel de Controlo</a>';
+        echo '<a class="btn btn-dark text-center" href="/admin">Painel de Controlo</a>';
+    }
+    if(isset($_SESSION["user"]) && $_SESSION["user"]["isWriter"]== 1){
+        echo '<a class="btn btn-dark text-center" href="/write">Escrever</a>';
     }
     if($controller=== "profile" || $controller=== "admin"){
         echo '<a class="btn btn-dark" href="/logout">Logout</a>';
