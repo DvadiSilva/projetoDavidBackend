@@ -38,7 +38,7 @@
     </div>
 
     <div class="deleteNewsModalWrapper d-none">
-        <div class="d-flex justify-content-around deleteNewsModal">
+        <div class="d-flex justify-content-around deleteNewsModal p-3">
             <div>
                 <h5 class="modal-title">Apagar noticia "'.$newsSolo["title"].'"?</h5>
                 <button type="button" id="deleteNewsCloseModal" class="btn-close deleteNewsCloseModal"></button>

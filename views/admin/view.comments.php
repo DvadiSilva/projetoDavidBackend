@@ -29,7 +29,7 @@
                 <td>
                     <button type="button" class="btn-close deleteCommentShowModal"></button>
                     <div class="deleteCommentModalWrapper d-none">
-                        <div class="d-flex justify-content-around deleteCommentModal">
+                        <div class="d-flex justify-content-around deleteCommentModal p-3">
                             <div>
                                 <h5 class="modal-title">Apagar Comentário "'.$comment["message"].'"?</h5>
                                 <button type="button" id="deleteCommentCloseModal" class="btn-close deleteCommentCloseModal"></button>

@@ -40,7 +40,7 @@
                 </svg>
             </button>
             <div class="changePasswordModalWrapper d-none">
-                <div class="d-flex justify-content-around changePasswordModal">
+                <div class="d-flex justify-content-around changePasswordModal p-3">
                     <div>
                         <h5 class="modal-title">Alterar Password</h5>
                         <button type="button" id="changePasswordCloseModal" class="btn-close changePasswordCloseModal"></button>

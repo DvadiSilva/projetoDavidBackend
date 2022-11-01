@@ -6,8 +6,8 @@
             <div class="card flex-row border-dark m-3 align-items-center bg-light bg-gradient">
                 <img src="'.$newsSolo["image"].'" class="card-img-top p-3 newsImg" alt="...">
                 <div class="card-body d-flex flex-column justify-content-around">
-                    <h3 class="card-title">'.$newsSolo["title"].'</h3>
-                    <p class="card-text">'.$newsSolo["summary"].'</p>
+                    <h3 class="card-title mb-3">'.$newsSolo["title"].'</h3>
+                    <p class="card-text text-justify">'.$newsSolo["summary"].'</p>
                     <div class="row justify-content-around">
                         <div class="col-6 d-flex align-items-center justify-content-center">
                             <a href="/news/'.$newsSolo["news_id"].'" class="btn btn-primary">

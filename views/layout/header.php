@@ -12,8 +12,8 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid d-flex justify-content-between">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="/"><img src="/images/jornalinho.png" alt="home" class="commentImg border border-dark"></a></li>
 <?php
     foreach($categories as $category){
         echo '
@@ -33,7 +33,7 @@
         echo '<a class="btn btn-dark text-center" href="/admin">Painel de Controlo</a>';
     }
     if(isset($_SESSION["user"]) && $_SESSION["user"]["isWriter"]== 1){
-        echo '<a class="btn btn-dark text-center" href="/write">Escrever</a>';
+        echo '<a class="btn btn-dark text-center mx-3" href="/write">Escrever</a>';
     }
 ?>
                 <form class="d-flex align-items-center" action="/search" method="post">
@@ -52,8 +52,8 @@
     else{
         echo '
             <div class="d-flex align-items-center mx-3">
-                <a class="nav-link" href="/profile">'.$_SESSION["user"]["username"].'</a>
-                <a class="nav-link mx-3" href="/profile"><img src="'.$_SESSION["user"]["photo"].'" class="commentImg" id="userPhoto" data-username="'.$_SESSION["user"]["username"].'"></a>
+                <a class="nav-link name" href="/profile">'.$_SESSION["user"]["username"].'</a>
+                <a class="nav-link mx-3" href="/profile"><img src="'.$_SESSION["user"]["photo"].'" class="commentImg border border-dark" id="userPhoto" data-username="'.$_SESSION["user"]["username"].'"></a>
                 <a class="btn btn-dark" href="/logout">Logout</a>
             </div>
         ';

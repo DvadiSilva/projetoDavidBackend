@@ -36,7 +36,7 @@
                         </button>
 
             <div class="editCategoryModalWrapper d-none">
-                <div class="d-flex justify-content-around editCategoryModal">
+                <div class="d-flex justify-content-around editCategoryModal p-3">
                     <div>
                         <h5 class="modal-title">Editar categoria '.$category["name"].'</h5>
                         <button type="button" id="editCategoryCloseModal" class="btn-close editCategoryCloseModal"></button>
@@ -51,7 +51,7 @@
             </div>
 
                         <div class="deleteCategoryModalWrapper d-none">
-                            <div class="d-flex justify-content-around deleteCategoryModal">
+                            <div class="d-flex justify-content-around deleteCategoryModal p-3">
                                 <div>
                                     <h5 class="modal-title">Apagar categoria '.$category["name"].'?</h5>
                                     <button type="button" id="deleteCategoryCloseModal" class="btn-close deleteCategoryCloseModal"></button>
@@ -77,7 +77,7 @@
         </table>
     </div>
 </section>
-<nav class="d-flex justify-content-center">
+<nav class="d-flex justify-content-center mt-3">
     <ul class="pagination">
         <li class="page-item">
             <a class="page-link" href="/admin/categories/<?= empty($page)? "0":$page-1?>" aria-label="Previous">

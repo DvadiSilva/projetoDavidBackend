@@ -1,3 +1,30 @@
+/*vars*/
+:root{
+  --sienna-dark: rgb(132, 67, 37);
+  --sienna-light: rgb(228, 153, 119);
+}
+
+/*Bootstrap corrections*/
+.btn-primary{background-color:sienna; border: var(--sienna-dark);--bs-btn-hover-bg: var(--sienna-dark);--bs-btn-active-bg: var(--sienna-dark);}
+.navbar-nav{--bs-nav-link-hover-color: sienna}
+
+.page-link{color: sienna;border: var(--bs-pagination-border-width) solid #000;}
+.pagination{--bs-pagination-hover-color: sienna; --bs-pagination-focus-color: sienna;--bs-pagination-hover-border-color: var(--sienna-dark);--bs-pagination-hover-bg: var(--sienna-light);--bs-pagination-focus-bg:var(--sienna-light);}
+.form-check-input:checked {
+  background-color: sienna;
+  border-color: sienna;
+}
+
+.link-info {
+  color: var(--sienna-light) !important;
+}
+.link-info:hover{color: var(--sienna-dark) !important;}
+/*toa*/
+.firstNews{height: 60vh;}
+.firstNews img{max-width:500px; min-width: 500px; max-height: 330px;}
+
+.text-justify{ text-align: justify;}
+.name:hover{ color: var(--sienna-dark)}
 .newsImg{max-width:300px; min-width: 300px; max-height: 230px;}
 .newsMessage{text-align: justify;}
 
@@ -17,7 +44,7 @@
   height: 32px;
 }
 
-/*Eror*/
+/*Error*/
 #errorContainer{--bs-alert-color: #842029;--bs-alert-bg: #f8d7da;--bs-alert-border-color: #f5c2c7;}
 #errorSvg{width: 20%}
 #errorMessage{font-size: larger;text-align: center;width: 100%;}
@@ -94,6 +121,7 @@
     align-items:center;
     flex-direction:column;
     position:relative;
+    border-radius: 2%;
 }
 
 #deleteCategoryCloseModal, #editCategoryCloseModal, #deleteUserCloseModal, #editUserCloseModal, #changePasswordCloseModal, #deleteCommentCloseModal, #deleteNewsCloseModal{

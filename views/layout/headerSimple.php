@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="btn btn-dark" href="/">Home</a></li>
                 </ul>
 <?php
     if(isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"]== 1){

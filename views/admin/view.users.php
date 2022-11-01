@@ -52,7 +52,7 @@
 
 
         <div class="editUserModalWrapper d-none">
-            <div class="d-flex justify-content-around editUserModal">
+            <div class="d-flex justify-content-around editUserModal p-3">
                 <div>
                     <h5 class="modal-title">Editar utilizador '.$user["name"].'</h5>
                     <button type="button" id="editUserCloseModal" class="btn-close editUserCloseModal"></button>
@@ -104,7 +104,7 @@
         </div>
 
         <div class="deleteUserModalWrapper d-none">
-            <div class="d-flex justify-content-around deleteUserModal">
+            <div class="d-flex justify-content-around deleteUserModal p-3">
                 <div>
                     <h5 class="modal-title">Apagar utilizador '.$user["name"].'?</h5>
                     <button type="button" id="deleteUserCloseModal" class="btn-close deleteUserCloseModal"></button>
